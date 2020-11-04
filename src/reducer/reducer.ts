@@ -14,8 +14,6 @@ const deepCopy = (stateToBeCopied: any) => {
     return stateCopy;
 }
 
-// random comment
-
 const reducer = (state = initialState, action: any) => {
     if (action.type === 'AUTHENTICATE_USER'){
         let stateCopy = deepCopy(state);
