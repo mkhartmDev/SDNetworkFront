@@ -1,7 +1,11 @@
 
 let initialState: any = {
     authenticated: true,
-    searchInput: 'abc'
+    searchInput: '',
+    s3BaseURL: "https://images-project2-kyle.s3-us-west-1.amazonaws.com",
+    userObject: {
+        username: 'kyleaoki' // test username
+    }
 }
 
 // Method to make a deep copy of state. Always use before manipulating state.
