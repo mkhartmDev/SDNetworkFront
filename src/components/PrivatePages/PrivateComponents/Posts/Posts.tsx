@@ -25,7 +25,9 @@ export default class Posts extends Component<any, any> {
     }
 
     render() {
+        
         let PostArray = this.generatePostArray();
+
         return (
             <div className={classes.PostList}>
                 {PostArray}
