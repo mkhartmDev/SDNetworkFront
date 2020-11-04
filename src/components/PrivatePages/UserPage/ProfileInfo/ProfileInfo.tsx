@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import classes from './ProfileInfo.module.sass'
+import { withRouter } from 'react-router-dom'
 
 interface Props {
     
@@ -15,12 +16,16 @@ class ProfileInfo extends Component<any, any> {
         profiePic: `${this.props.s3BaseURL}/profile-picture/${this.props.username}` // base URL + profilePictureURL
     }
 
+    profilePictureOnClickHandler = () => {
+        this.props.history.push('/settings');
+    }
+
     render() {
 
         return (
             <div className={classes.ProfileInfoContainer}>
                 <div className={classes.ProfilePicContainer}>
-                    <img className={classes.ProfilePic} src={this.state.profiePic} alt="profilePic"/>
+                    <img onClick={this.profilePictureOnClickHandler} className={classes.ProfilePic} src={this.state.profiePic} alt="profilePic"/>
                 </div>
                 <div className={classes.NameContainer}>Firstname Lastname</div>
             </div>
@@ -35,4 +40,4 @@ const mapStateToProps = (state:any) => {
     }
 }
 
-export default connect(mapStateToProps, null)(ProfileInfo);
+export default withRouter(connect(mapStateToProps, null)(ProfileInfo));
