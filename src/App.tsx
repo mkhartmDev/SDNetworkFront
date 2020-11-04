@@ -1,26 +1,61 @@
 import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import { BrowserRouter, Switch, Route } from 'react-router-dom';
+import './App.sass';
+import Landing from './components/PublicPages/Landing/Landing'
+import LogInPage from './components/PublicPages/LogInPage/LogInPage';
+import CreateAnAccountPage from './components/PublicPages/CreateAnAccountPage/CreateAnAccountPage';
+import { connect } from 'react-redux';
+import FeedPage from './components/PrivatePages/FeedPage/FeedPage';
+import UserPage from './components/PrivatePages/UserPage/UserPage';
+import CreatePostPage from './components/PrivatePages/CreatePostPage/CreatePostPage';
+import SettingsPage from './components/PrivatePages/SettingsPage/SettingsPage';
+import SearchPage from './components/PrivatePages/PrivateComponents/SearchPage/SearchPage';
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+interface Props {
+    
 }
 
-export default App;
+interface State {
+    
+}
+
+class App extends React.Component<any, any> {
+
+  render() {
+
+    let privateRoutes = [];
+
+    if (this.props.authenticated){
+      privateRoutes.push(
+        <Route from='/user' render={() => <UserPage />}/>,
+        <Route from='/feed' render={() => <FeedPage/>} />,
+        <Route from='/create-post' render={() => <CreatePostPage/>} />,
+        <Route from='/settings' render={() => <SettingsPage />} />,
+        <Route from='/search' render={() => <SearchPage />} />
+      );
+    }
+
+    return (
+      <BrowserRouter>
+        <div className="App">
+          <Switch>
+            <Route from='/log-in' render={() => <LogInPage />} />
+            <Route from='/create-an-account' render={() => <CreateAnAccountPage />} />
+            <Route from='/landing' render={() => <Landing />} />
+            {privateRoutes}
+            <Route from='/' render={() => <Landing />} />
+          </Switch>
+        </div>
+      </BrowserRouter>
+    );
+  };
+
+}
+
+const mapStateToProps = (state: any) => {
+  return {
+      authenticated: state.authenticated
+  }
+}
+
+export default connect(mapStateToProps, null)(App);
