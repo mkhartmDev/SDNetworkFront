@@ -3,6 +3,7 @@ import classes from './NavBar.module.sass'
 import SearchBar from './SearchBar/SearchBar'
 import { NavLink, withRouter } from 'react-router-dom'
 import { connect } from 'react-redux'
+import Logo from '../../../../assets/mask.png'
 
 interface Props {
     
@@ -25,8 +26,12 @@ class NavBar extends Component<any, any> {
     render() {
         return (
             <div className={classes.NavBar}>
-                <div className={classes.Logo}>SD Network</div>
-                <div></div>
+                <div className={classes.Logo}>
+                    <div className={classes.LogoTextBig}>Social Distancing Network</div>
+                    <div className={classes.LogoTextSmall}>SD Network</div>
+                    <img className={classes.LogoImg} src={Logo} alt="pic" />
+                </div>
+                {/* <div></div> */}
                 <div className={classes.SearchBar}>
                     <SearchBar />
                 </div>
