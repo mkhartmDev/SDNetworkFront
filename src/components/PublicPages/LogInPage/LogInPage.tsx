@@ -31,8 +31,10 @@ class LogInPage extends Component<any, any> {
         }
         let userIsValid = await validateUser(this.state.usernameEntered, this.state.passwordEntered);
         if (userIsValid === 'VALID') {
+            const userObject = await { username: 'kyleaoki', firstName: 'Kyle', lastName: 'Aoki' }; // api call goes here
+            this.props.setGlobalUserObject(userObject);
             this.props.authenticateUser();
-            this.props.history.push('/user');
+            this.props.history.push(`/user/${userObject.username}`);
         } else {
             this.setState({invalidLogInMessage: true});
         }
@@ -71,6 +73,7 @@ const mapStateToProps = (state: any) => {
 
 const mapDispatchToProps = (dispatch: any) => {
     return {
+        setGlobalUserObject: (UO: any) => dispatch({type: 'SET_GLOBAL_USER_OBJECT', payload: { userObject: UO }}),
         authenticateUser: () => dispatch({type: 'AUTHENTICATE_USER'})
     }
 }

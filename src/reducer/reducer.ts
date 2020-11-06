@@ -2,10 +2,8 @@
 let initialState: any = {
     authenticated: true,
     searchInput: '',
-    s3BaseURL: "https://images-project2-kyle.s3-us-west-1.amazonaws.com",
-    userObject: {
-        username: 'kyleaoki' // test username
-    }
+    s3BaseURL_ProfilePicture: "https://images-project2-kyle.s3-us-west-1.amazonaws.com/profile-picture/",
+    userObject: null
 }
 
 // Method to make a deep copy of state. Always use before manipulating state.
@@ -29,6 +27,11 @@ const reducer = (state = initialState, action: any) => {
         let stateCopy = deepCopy(state);
         stateCopy.searchInput = action.payload.searchInput;
         return stateCopy
+    }
+    if (action.type === 'SET_GLOBAL_USER_OBJECT') {
+        let stateCopy = deepCopy(state);
+        stateCopy.userObject = action.payload.userObject;
+        return stateCopy;
     }
     return state;
 }

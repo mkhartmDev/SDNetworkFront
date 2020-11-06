@@ -11,30 +11,28 @@ interface State {
     
 }
 
-export default class Post extends Component<any, any> {
-    state = {
-        image: true,
-        imgSrc: 'https://photographylife.com/wp-content/uploads/2016/06/Mass.jpg',
-        date: '2020-11-1',
-        time: '8:29 PM'
-    }
+class Post extends Component<any, any> {
+    state = {}
 
     render() {
-        let dateTime = `${this.state.date} ${this.state.time}`
-        let image = !this.state.image ? null : (
+
+        let dateTime = `${this.props.userObj.date} ${this.props.userObj.time}`
+        let image = !this.props.userObj.imagePost ? null : (
             <div className={classes.DateImageContainer}>
                 <div className={classes.dateTime}>{dateTime}</div>
                 <div className={classes.ImageContainer}>
-                    <img className={classes.PostImage} src={this.state.imgSrc} alt="pic" />
+                    <img className={classes.PostImage} src={this.props.userObj.imgURL} alt="pic" />
                 </div>
             </div>
         )
+
+        const PosterProps = { userObj: this.props.userObj };
         
         
         return (
             <div className={classes.PostContainer}>
                 <div className={classes.LeftSide}>
-                    <Poster />
+                    <Poster {...PosterProps} />
                 </div>
                 <div className={classes.RightSide}>
                     {image}
@@ -44,3 +42,5 @@ export default class Post extends Component<any, any> {
         )
     }
 }
+
+export default Post;
