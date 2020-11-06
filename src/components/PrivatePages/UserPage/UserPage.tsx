@@ -23,13 +23,17 @@ class UserPage extends Component<any, any> {
     componentDidMount(){
         const usernameFromURLParameter = this.props.match.params.username;
         // use USERNAME from URLParam to get user object with api call
-        const userObject = { username: 'kyleaoki', firstName: 'Kyle', lastName: 'Aoki' }; // api call
+        const userObject = { username: usernameFromURLParameter, firstName: 'Kyle', lastName: 'Aoki' }; // api call
         this.setState({userObject: userObject})
     }
 
-    render() {
+    // componentWillReceiveProps(nextProps: any) {
+    //     if (nextProps.match.params.product !== this.props.match.params.product) {
+    //       this.setState({userObject: {}});
+    //     }
+    // }
 
-        const ProfileInfoProps = this.state.userObject;
+    render() {
 
         return (
             <div className={classes.Body}>
@@ -37,11 +41,11 @@ class UserPage extends Component<any, any> {
                 <div className={classes.MAXWIDTH}>
                     <div className={classes.UserPageContainer}>
                         <div className={classes.LeftSide}>
-                            <ProfileInfo {...ProfileInfoProps} />
+                            <ProfileInfo {...this.state.userObject} />
                             <FriendsBox />
                         </div>
                         <div className={classes.RightSide}>
-                            <Posts ProfileOrFeed='PROFILE' />
+                            <Posts {...this.state.userObject} ProfileOrFeed='PROFILE' />
                         </div>
                     </div>
                 </div>

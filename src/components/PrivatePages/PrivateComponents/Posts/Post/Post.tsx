@@ -18,21 +18,20 @@ class Post extends Component<any, any> {
 
         let dateTime = `${this.props.userObj.date} ${this.props.userObj.time}`
         let image = !this.props.userObj.imagePost ? null : (
+
             <div className={classes.DateImageContainer}>
                 <div className={classes.dateTime}>{dateTime}</div>
                 <div className={classes.ImageContainer}>
                     <img className={classes.PostImage} src={this.props.userObj.imgURL} alt="pic" />
                 </div>
             </div>
+            
         )
-
-        const PosterProps = { userObj: this.props.userObj };
-        
         
         return (
             <div className={classes.PostContainer}>
                 <div className={classes.LeftSide}>
-                    <Poster {...PosterProps} />
+                    <Poster {...this.props} />
                 </div>
                 <div className={classes.RightSide}>
                     {image}
