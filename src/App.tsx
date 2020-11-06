@@ -27,7 +27,7 @@ class App extends React.Component<any, any> {
 
     if (this.props.authenticated){
       privateRoutes.push(
-        <Route from='/user' render={() => <UserPage />}/>,
+        <Route from='/user/:username' render={() => <UserPage />}/>,
         <Route from='/feed' render={() => <FeedPage/>} />,
         <Route from='/create-post' render={() => <CreatePostPage/>} />,
         <Route from='/settings' render={() => <SettingsPage />} />,
