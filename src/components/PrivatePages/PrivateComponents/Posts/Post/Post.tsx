@@ -16,13 +16,13 @@ class Post extends Component<any, any> {
 
     render() {
 
-        let dateTime = `${this.props.userObj.date} ${this.props.userObj.time}`
-        let image = !this.props.userObj.imagePost ? null : (
+        let dateTime = `${this.props.postData.date} ${this.props.postData.time}`
+        let image = !this.props.postData.imagePost ? null : (
 
             <div className={classes.DateImageContainer}>
                 <div className={classes.dateTime}>{dateTime}</div>
                 <div className={classes.ImageContainer}>
-                    <img className={classes.PostImage} src={this.props.userObj.imgURL} alt="pic" />
+                    <img className={classes.PostImage} src={this.props.postData.imgURL} alt="pic" />
                 </div>
             </div>
             
@@ -31,11 +31,11 @@ class Post extends Component<any, any> {
         return (
             <div className={classes.PostContainer}>
                 <div className={classes.LeftSide}>
-                    <Poster {...this.props} />
+                    <Poster {...this.props.postData} />
                 </div>
                 <div className={classes.RightSide}>
                     {image}
-                    <PostBody numLikes={this.props.numLikes} />
+                    <PostBody numLikes={this.props.numLikes} postData={this.props.postData} />
                 </div>
             </div>
         )

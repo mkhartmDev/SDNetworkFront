@@ -20,18 +20,24 @@ class UserPage extends Component<any, any> {
         userObject: {}
     }
 
-    componentDidMount(){
+
+    fetchDataWithURLParam = () => {
         const usernameFromURLParameter = this.props.match.params.username;
         // use USERNAME from URLParam to get user object with api call
         const userObject = { username: usernameFromURLParameter, firstName: 'Kyle', lastName: 'Aoki' }; // api call
-        this.setState({userObject: userObject})
+        this.setState({userObject: userObject});
+        window.scrollTo(0, 0);
     }
 
-    // componentWillReceiveProps(nextProps: any) {
-    //     if (nextProps.match.params.product !== this.props.match.params.product) {
-    //       this.setState({userObject: {}});
-    //     }
-    // }
+    componentDidMount(){
+        this.fetchDataWithURLParam();
+    }
+
+    componentDidUpdate = (prevProps: any) => {
+        if (this.props.match.params.username !== prevProps.match.params.username ) {
+            this.fetchDataWithURLParam();
+        };
+    }
 
     render() {
 
