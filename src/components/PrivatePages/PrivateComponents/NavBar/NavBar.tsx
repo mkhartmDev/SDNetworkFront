@@ -3,6 +3,7 @@ import classes from './NavBar.module.sass'
 import SearchBar from './SearchBar/SearchBar'
 import { NavLink, withRouter } from 'react-router-dom'
 import { connect } from 'react-redux'
+import Logo from '../../../../assets/mask.png'
 
 interface Props {
     
@@ -23,10 +24,17 @@ class NavBar extends Component<any, any> {
     }
 
     render() {
+
+        const URLToOwnProfile = `/user/${this.props.userObject.username}`;
+
         return (
             <div className={classes.NavBar}>
-                <div className={classes.Logo}>SD Network</div>
-                <div></div>
+                <div className={classes.Logo}>
+                    <div className={classes.LogoTextBig}>Social Distancing Network</div>
+                    <div className={classes.LogoTextSmall}>SD Network</div>
+                    <img className={classes.LogoImg} src={Logo} alt="pic" />
+                </div>
+                {/* <div></div> */}
                 <div className={classes.SearchBar}>
                     <SearchBar />
                 </div>
@@ -36,7 +44,7 @@ class NavBar extends Component<any, any> {
                     <div className={classes.DropDown}>
                         <div className={classes.DropDownButton}>Account</div>
                         <div className={classes.DropdownContent}>
-                            <NavLink to='/user' className={classes.DropDownLink}>My Profile</NavLink>
+                            <NavLink to={URLToOwnProfile} className={classes.DropDownLink}>My Profile</NavLink>
                             <NavLink to='/settings' className={classes.DropDownLink}>Settings</NavLink>
                             <div onClick={this.logOutHandler} className={classes.DropDownLink}>Log Out</div>
                         </div>
@@ -48,6 +56,12 @@ class NavBar extends Component<any, any> {
     
 }
 
+const mapStateToProps = (state: any) => {
+    return {
+        userObject: state.userObject
+    }
+}
+
 const mapDispatchToProps = (dispatch: any) => {
     return {
         authenticateUser: () => dispatch({type: 'AUTHENTICATE_USER'}),
@@ -56,4 +70,4 @@ const mapDispatchToProps = (dispatch: any) => {
     }
 }
 
-export default connect(null, mapDispatchToProps)(withRouter(NavBar));
+export default connect(mapStateToProps, mapDispatchToProps)(withRouter(NavBar));
