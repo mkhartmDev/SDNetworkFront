@@ -31,7 +31,7 @@ class App extends React.Component<any, any> {
         <Route from='/feed' render={() => <FeedPage/>} />,
         <Route from='/create-post' render={() => <CreatePostPage/>} />,
         <Route from='/settings' render={() => <SettingsPage />} />,
-        <Route from='/search' render={() => <SearchPage />} />
+        <Route from='/search/:searchInput' render={() => <SearchPage />} />
       );
     }
 
