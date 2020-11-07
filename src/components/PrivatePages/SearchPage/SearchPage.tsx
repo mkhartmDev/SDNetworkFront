@@ -15,9 +15,9 @@ interface State {
 class SearchPage extends Component<any, any> {
 
     state = {
-        maxResultsDisplayed: 24,
+        maxResultsDisplayed: 18,
         currentFirstResultIndex: 0,
-        currentLastResultIndex: 24,
+        currentLastResultIndex: 18,
         searchResults: [],
         searchResultsQuantity: 0
     }

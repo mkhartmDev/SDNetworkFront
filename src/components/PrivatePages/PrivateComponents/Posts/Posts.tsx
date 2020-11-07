@@ -1,7 +1,6 @@
 import React, { Component } from 'react'
 import classes from './Posts.module.sass'
 import Post from './Post/Post'
-import { connect } from 'react-redux'
 
 interface Props {
     
@@ -87,13 +86,12 @@ class Posts extends Component<any, any> {
     }
 
     genereateFeedArray = () => {
-        let testPostData = this.fakeFeedAPICall();
+        let testPostData = this.fakeFeedAPICall(); // get all posts ordered by date (latest posts)
         return testPostData;
     }
 
     generateProfilePostsArray = (username: any) => {
-        // Get posts of specific user "http:// ... /username"
-        let testPostData = this.fakeProfileAPICall();
+        let testPostData = this.fakeProfileAPICall(); // Get posts of specific user "http:// ... /username"
         return testPostData;
     }
 
@@ -117,12 +115,10 @@ class Posts extends Component<any, any> {
 
     componentDidMount() {
         let PostArray = this.generatePosts();
-        this.setState({PostArray: PostArray})
+        this.setState({PostArray: PostArray});
     }
 
     render() {
-
-        console.log(this.state.PostArray);
 
         return (
             <div className={classes.PostList}>
