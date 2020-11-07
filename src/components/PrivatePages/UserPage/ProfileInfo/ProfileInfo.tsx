@@ -12,22 +12,19 @@ interface State {
 }
 
 class ProfileInfo extends Component<any, any> {
-    state = {
-        profiePic: `${this.props.s3BaseURL}/profile-picture/${this.props.username}` // base URL + profilePictureURL
-    }
 
-    profilePictureOnClickHandler = () => {
-        this.props.history.push('/settings');
-    }
+    state = {}
 
     render() {
+
+        const ProfilePicURL = this.props.s3BaseURL_ProfilePicture + this.props.username;
 
         return (
             <div className={classes.ProfileInfoContainer}>
                 <div className={classes.ProfilePicContainer}>
-                    <img onClick={this.profilePictureOnClickHandler} className={classes.ProfilePic} src={this.state.profiePic} alt="profilePic"/>
+                    <img className={classes.ProfilePic} src={ProfilePicURL} alt="profilePic"/>
                 </div>
-                <div className={classes.NameContainer}>Firstname Lastname</div>
+                <div className={classes.NameContainer}>{this.props.firstName} {this.props.lastName}</div>
             </div>
         )
     }
@@ -35,9 +32,8 @@ class ProfileInfo extends Component<any, any> {
 
 const mapStateToProps = (state:any) => {
     return {
-        username: state.userObject.username,
-        s3BaseURL: state.s3BaseURL
+        s3BaseURL_ProfilePicture: state.s3BaseURL_ProfilePicture
     }
 }
 
-export default withRouter(connect(mapStateToProps, null)(ProfileInfo));
+export default connect(mapStateToProps, null)(ProfileInfo);

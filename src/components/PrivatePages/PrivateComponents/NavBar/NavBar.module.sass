@@ -8,21 +8,57 @@
     color: white
     display: grid
     grid-template-rows: 1fr
-    grid-template-columns: 200px auto 600px 400px
+    grid-template-columns: 1fr 1fr 1fr
     max-width: 100%
 
 .Logo 
     display: flex
-    flex-direction: column
-    justify-content: center
+    flex-direction: row
+    justify-content: flex-start
     align-items: center
+    padding-left: 20px
     font-size: 30px
 
+.LogoImg
+    height: 50px
+    width: 80px
+    padding-left: 20px
+    
 .SearchBar
     display: flex
     flex-direction: column
     justify-content: center
     align-items: center
+    margin-right: 30px
+
+.LogoTextSmall
+    visibility: hidden
+    width: 0
+    height: 0
+
+.LogoTextBig
+    visibility: visible
+    width: auto
+    height: auto
+
+@media screen and ( max-width: 1500px)
+    .LogoTextSmall
+        visibility: visible
+        width: auto
+        height: auto
+    .LogoTextBig
+        visibility: hidden
+        width: 0
+        height: 0
+    
+@media screen and ( max-width: 1250px )
+    .LogoTextSmall
+        visibility: hidden
+        width: 0
+        height: 0
+    .Logo
+        padding-left: 0
+    
 
 .NavLinks
     display: flex
