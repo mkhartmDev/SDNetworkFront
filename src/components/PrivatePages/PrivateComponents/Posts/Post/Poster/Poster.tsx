@@ -14,12 +14,12 @@ class Poster extends Component<any, any> {
     state = {}
 
     posterOnClickHandler = () => {
-        this.props.history.push(`/user/${this.props.userObj.username}`);
+        this.props.history.push(`/user/${this.props.username}`);
     }
 
     render() {
 
-        const profilePicURL = this.props.s3BaseURL_ProfilePicture + this.props.userObj.username;
+        const profilePicURL = this.props.s3BaseURL_ProfilePicture + this.props.username;
 
         return (
             <div className={classes.PosterContainer} onClick={this.posterOnClickHandler}>
@@ -29,7 +29,7 @@ class Poster extends Component<any, any> {
                             src={profilePicURL} alt="pic"
                         />
                     </div>
-                <div className={classes.PosterNameContainer}>{this.props.userObj.firstName} {this.props.userObj.lastName}</div>
+                <div className={classes.PosterNameContainer}>{this.props.firstName} {this.props.lastName}</div>
                 </div>
             </div>
         )

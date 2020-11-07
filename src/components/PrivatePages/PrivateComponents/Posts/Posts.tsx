@@ -16,7 +16,7 @@ class Posts extends Component<any, any> {
         PostArray: []
     }
 
-    fakeAPICall = () => {
+    fakeFeedAPICall = () => {
         return [
             {
                 "username":"kyleaoki1",
@@ -51,30 +51,65 @@ class Posts extends Component<any, any> {
         ];
     }
 
+    fakeProfileAPICall = () => {
+        return [
+            {
+                "username":"kyleaoki1",
+                "firstName":"xyz",
+                "lastName":"zzz",
+                "postText":"Lorem ipsum dolor sit amet consectetur adipisicing elit.",
+                "imagePost":true,
+                "imgURL":"https://upload.wikimedia.org/wikipedia/commons/e/e1/Gaoliang_Bridge.JPG",
+                "date":"2020-11-1",
+                "time":"8:29 PM"
+             },
+             {
+                "username":"kyleaoki2",
+                "firstName":"Kyle2",
+                "lastName":"Aoki2",
+                "postText":"Lorem ipsum dolor sit amet consectetur adipisicing elit. Aliquam quibusdam magnam consequuntur quis labore dolorum asperiores recusandae esse, praesentium error saepe porro tempora corrupti.",
+                "imagePost":true,
+                "imgURL":"https://upload.wikimedia.org/wikipedia/commons/e/e1/Gaoliang_Bridge.JPG",
+                "date":"2020-11-1",
+                "time":"8:29 PM"
+             },
+             {
+                "username": "kyleaoki3",
+                "firstName":"asdfasdfasdf",
+                "lastName":"asdfasdf",
+                "postText": "Lorem ipsum dolor sit amet consectetur adipisicing elit. Aliquam quibusdam magnam consequuntur quis labore dolorum asperiores recusandae esse, accusantium suscipit tenetur vero, delectus sequi, praesentium error saepe porro tempora corrupti.",
+                "imagePost":true,
+                "imgURL":"https://upload.wikimedia.org/wikipedia/commons/e/e1/Gaoliang_Bridge.JPG",
+                "date":"2020-11-1",
+                "time":"8:29 PM"
+             }
+        ];
+    }
+
     genereateFeedArray = () => {
-        let testPostData = this.fakeAPICall();
+        let testPostData = this.fakeFeedAPICall();
         return testPostData;
     }
 
     generateProfilePostsArray = (username: any) => {
         // Get posts of specific user "http:// ... /username"
-        let testPostData = this.fakeAPICall();
+        let testPostData = this.fakeProfileAPICall();
         return testPostData;
     }
 
     generatePosts = () => {
         // Gets post data, depending on whether  this.props.ProfileOrFeed  is equal to 'PROFILE' or 'FEED'
-        let postData: any = [];
+        let postDataArr: any = [];
         if (this.props.ProfileOrFeed === 'PROFILE') {
-            postData = this.generateProfilePostsArray(this.props.username);
+            postDataArr = this.generateProfilePostsArray(this.props.username);
         } else {
-            postData = this.genereateFeedArray();
+            postDataArr = this.genereateFeedArray();
         }
 
         let postArr = [];
-        for (let obj of postData){
+        for (let postData of postDataArr){
             postArr.push(
-                <Post userObj={obj} />
+                <Post postData={postData} />
             );
         }
         return postArr;
