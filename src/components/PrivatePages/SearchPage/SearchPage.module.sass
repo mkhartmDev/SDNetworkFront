@@ -1,4 +1,4 @@
-@import '../../../../index'
+@import '../../../index'
     
 .Body
     width: 100%
@@ -29,7 +29,7 @@
     flex-wrap: wrap
     margin-bottom: 65px
 
-.MoreButton
+.SearchButton
     height: 55px    
     width: 150px
     border: 2px solid $base-color
@@ -41,11 +41,18 @@
     font-size: 20px
     color: $active-color
 
-.MoreButton:hover
+.SearchButton:hover
     color: $subtle-offwhite-coloring
     background-color: $hover-color
     cursor: pointer
     user-select: none
 
-.MoreButton:active
+.SearchButton:active
     background-color: $active-color
+
+.ButtonContainer
+    display: flex
+    flex-direction: row
+    justify-content: center
+    align-items: center
+    gap: 30px
