@@ -9,7 +9,7 @@ import FeedPage from './components/PrivatePages/FeedPage/FeedPage';
 import UserPage from './components/PrivatePages/UserPage/UserPage';
 import CreatePostPage from './components/PrivatePages/CreatePostPage/CreatePostPage';
 import SettingsPage from './components/PrivatePages/SettingsPage/SettingsPage';
-import SearchPage from './components/PrivatePages/PrivateComponents/SearchPage/SearchPage';
+import SearchPage from './components/PrivatePages/SearchPage/SearchPage';
 
 interface Props {
     
@@ -31,7 +31,7 @@ class App extends React.Component<any, any> {
         <Route from='/feed' render={() => <FeedPage/>} />,
         <Route from='/create-post' render={() => <CreatePostPage/>} />,
         <Route from='/settings' render={() => <SettingsPage />} />,
-        <Route from='/search' render={() => <SearchPage />} />
+        <Route from='/search/:searchInput' render={() => <SearchPage />} />
       );
     }
 

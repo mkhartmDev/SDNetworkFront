@@ -1,7 +1,6 @@
 import React, { Component } from 'react'
 import classes from './Posts.module.sass'
 import Post from './Post/Post'
-import { connect } from 'react-redux'
 
 interface Props {
     
@@ -26,7 +25,8 @@ class Posts extends Component<any, any> {
                 "imagePost":true,
                 "imgURL":"https://photographylife.com/wp-content/uploads/2016/06/Mass.jpg",
                 "date":"2020-11-1",
-                "time":"8:29 PM"
+                "time":"8:29 PM",
+                "numLikes": 5
              },
              {
                 "username":"kyleaoki2",
@@ -36,7 +36,8 @@ class Posts extends Component<any, any> {
                 "imagePost":true,
                 "imgURL":"https://photographylife.com/wp-content/uploads/2016/06/Mass.jpg",
                 "date":"2020-11-1",
-                "time":"8:29 PM"
+                "time":"8:29 PM",
+                "numLikes": 5
              },
              {
                 "username":"kyleaoki3",
@@ -46,7 +47,8 @@ class Posts extends Component<any, any> {
                 "imagePost":true,
                 "imgURL":"https://photographylife.com/wp-content/uploads/2016/06/Mass.jpg",
                 "date":"2020-11-1",
-                "time":"8:29 PM"
+                "time":"8:29 PM",
+                "numLikes": 5
              }
         ];
     }
@@ -61,7 +63,8 @@ class Posts extends Component<any, any> {
                 "imagePost":true,
                 "imgURL":"https://upload.wikimedia.org/wikipedia/commons/e/e1/Gaoliang_Bridge.JPG",
                 "date":"2020-11-1",
-                "time":"8:29 PM"
+                "time":"8:29 PM",
+                "numLikes": 5
              },
              {
                 "username":"kyleaoki2",
@@ -71,7 +74,8 @@ class Posts extends Component<any, any> {
                 "imagePost":true,
                 "imgURL":"https://upload.wikimedia.org/wikipedia/commons/e/e1/Gaoliang_Bridge.JPG",
                 "date":"2020-11-1",
-                "time":"8:29 PM"
+                "time":"8:29 PM",
+                "numLikes": 5
              },
              {
                 "username": "kyleaoki3",
@@ -81,19 +85,19 @@ class Posts extends Component<any, any> {
                 "imagePost":true,
                 "imgURL":"https://upload.wikimedia.org/wikipedia/commons/e/e1/Gaoliang_Bridge.JPG",
                 "date":"2020-11-1",
-                "time":"8:29 PM"
+                "time":"8:29 PM",
+                "numLikes": 5
              }
         ];
     }
 
     genereateFeedArray = () => {
-        let testPostData = this.fakeFeedAPICall();
+        let testPostData = this.fakeFeedAPICall(); // get all posts ordered by date (latest posts)
         return testPostData;
     }
 
     generateProfilePostsArray = (username: any) => {
-        // Get posts of specific user "http:// ... /username"
-        let testPostData = this.fakeProfileAPICall();
+        let testPostData = this.fakeProfileAPICall(); // Get posts of specific user "http:// ... /username"
         return testPostData;
     }
 
@@ -117,12 +121,10 @@ class Posts extends Component<any, any> {
 
     componentDidMount() {
         let PostArray = this.generatePosts();
-        this.setState({PostArray: PostArray})
+        this.setState({PostArray: PostArray});
     }
 
     render() {
-
-        console.log(this.state.PostArray);
 
         return (
             <div className={classes.PostList}>

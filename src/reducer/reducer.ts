@@ -2,7 +2,6 @@
 const getUserObject = () => {
     let JSONString = localStorage.getItem('userObject')
     if (JSONString != null) {
-        console.log("HERE")
         return JSON.parse(JSONString);
     } else {
         return {};

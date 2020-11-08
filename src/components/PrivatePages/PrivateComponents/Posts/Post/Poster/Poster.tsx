@@ -1,8 +1,8 @@
 import React, { Component } from 'react'
 import classes from './Poster.module.sass'
-import profilePic from '../../../../../../assets/profilePic.png'
 import { connect } from 'react-redux';
 import { withRouter } from 'react-router-dom';
+
 interface Props {
     
 }

@@ -1,8 +1,8 @@
 import React, { Component } from 'react'
 import NavBar from '../PrivateComponents/NavBar/NavBar'
 import classes from './CreatePostPage.module.sass'
-import profilePic from '../../../assets/profilePic.png'
 import { connect } from 'react-redux'
+import axios from 'axios'
 
 interface Props {
     
@@ -12,7 +12,35 @@ interface State {
 }
 
 class CreatePostPage extends Component<any, any> {
-    state = {}
+
+    state = {
+        textAreaInput: '',
+        imageToUpload: null
+    }
+
+    onTextAreaChangeHandler = (event: any) => {
+        this.setState({
+            textAreaInput: event.target.value
+        })
+    }
+
+    onInputChangeHandler = (event: any) => {
+        this.setState({imageToUpload: event.target.files[0]});
+    }
+
+    onSubmitButtonPressHandler = () => {
+
+        let formData = new FormData();
+        
+        if (this.state.imageToUpload !== null){
+            formData.append('image', this.state.imageToUpload || "");
+        }
+        formData.append('textAreaInput', this.state.textAreaInput);
+        formData.append('username', this.props.userObject.username);
+
+        // axios.post('postrequestURL', formData); // post request URL goes here
+        
+    }
 
     render() {
 
@@ -23,6 +51,7 @@ class CreatePostPage extends Component<any, any> {
                 <NavBar />
             <div className={classes.MAXWIDTH}>
                 <div className={classes.CreatePostContainer}>
+
                     <div className={classes.PosterAndTextArea}>
                         <div className={classes.ProfilePicContainer}>
                             <img className={classes.ProfilePic} src={profilePictureURL} alt="pic" />
@@ -30,9 +59,11 @@ class CreatePostPage extends Component<any, any> {
                         </div>
                         <textarea 
                             className={classes.PostTextArea} 
-                            placeholder='What would you like to post?' 
+                            placeholder='What would you like to post?'
+                            onChange={this.onTextAreaChangeHandler}
                         />
                     </div>
+
                     <div className={classes.ImageUploadContainer}>
                         <div>Upload An Image (Optional):</div>
                         <input 
@@ -40,10 +71,12 @@ class CreatePostPage extends Component<any, any> {
                             type="file" 
                             id="img" 
                             name="img" 
-                            accept="image/*" />
+                            accept="image/*"
+                            onChange={this.onInputChangeHandler}
+                            />
                     </div>
                     
-                    <button className={classes.SubmitButton}>Submit Post</button>
+                    <div className={classes.SubmitButton} onClick={this.onSubmitButtonPressHandler}>Submit Post</div>
                 </div>
             </div>
         </div>

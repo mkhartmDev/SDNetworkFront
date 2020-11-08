@@ -15,19 +15,20 @@ interface State {
 class SearchBar extends Component<any, any> {
     
     state = {
-        searchBarInputText: this.props.searchInput
+        searchBarInputText: ''
     }
 
     searchButtonClickedHandler = () => {
-        this.props.setSearchInput(this.state.searchBarInputText);
-        this.props.history.push('/search');
+        if (this.state.searchBarInputText === '') {
+            this.props.history.push('/search/all');
+        } else {
+            const searchURL = '/search/' + this.state.searchBarInputText;
+            this.props.history.push(searchURL);
+        }
     }
 
     searchBarOnChangeHandler = (event: any) => {
-        this.setState({
-            ...this.state,
-            searchBarInputText: event.target.value
-        });
+        this.setState({searchBarInputText: event.target.value});
     }
 
     render() {
@@ -43,16 +44,4 @@ class SearchBar extends Component<any, any> {
     
 }
 
-const mapStateToProps = (state: any) => {
-    return {
-        searchInput: state.searchInput
-    }
-}
-
-const mapDispatchToProps = (dispatch: any) => {
-    return {
-        setSearchInput: (input: any) => dispatch({type: 'SET_SEARCH_INPUT', payload: {searchInput: input}})
-    }
-}
-
-export default withRouter(connect(mapStateToProps, mapDispatchToProps)(SearchBar))
+export default withRouter(SearchBar);
