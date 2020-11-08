@@ -2,8 +2,9 @@ import React, { Component } from 'react'
 import classes from './LogInPage.module.sass'
 import { connect } from 'react-redux'
 import { withRouter } from 'react-router-dom'
-import Axios from 'axios'
 import { axiosInstance } from '../../../util/axiosConfig'
+import { User } from '../../../models/User'
+
 
 interface Props {
     
@@ -24,26 +25,11 @@ class LogInPage extends Component<any, any> {
         const validateUser = async (username: string, password: string) => {
             let response;
             try{
-            response = await axiosInstance.post("/login/", {username: username, password: password});
+            return response = await axiosInstance.post("/login/", {username: username, password: password});
             } catch (error) {
                 console.log(error);
                 response = null;
             }
-        // const data = JSON.stringify({username: username, password: password});
-        // const response = await axiosInstance({
-        //     method: 'post',
-        //     url: '/login',
-        //     data: data,
-        //     headers:{
-        //         'Access-Control-Allow-Origin':'*',
-        //     },
-
-        
-            if(response){
-                console.log(response.data);
-                return 'VALID'
-            }
-            return 'NOT VALID'
             // let apiCall = `https://jsonplaceholder.typicode.com/${username}/${password}`;
             // const response = await fetch(apiCall); // fake api, backend validation
             // const responseJSON = await response.json();
@@ -54,14 +40,9 @@ class LogInPage extends Component<any, any> {
             // return 'NOT VALID';
         }
         let userIsValid = await validateUser(this.state.usernameEntered, this.state.passwordEntered);
-        if (userIsValid === 'VALID') {
-            const userObject = await { 
-                username: 'kyleaoki', 
-                firstName: 'Kyle', 
-                lastName: 'Aoki',
-                email: 'kyle@aoki.com'
-            }; // api call goes here
-            
+        if (userIsValid != null && userIsValid.data) {
+            const userObject : User = userIsValid.data; // api call goes here
+            console.log(userObject);
             this.props.authenticateUser(userObject);
             this.props.history.push(`/user/${userObject.username}`);
         } else {
@@ -78,7 +59,6 @@ class LogInPage extends Component<any, any> {
     }
 
     render() {
-        console.log("[TEST]");
         let invalidMessage = this.state.invalidLogInMessage ? <div>Invalid Username or Password</div> : null;
         return (
             <div className={classes.LogInPageContainer}>
