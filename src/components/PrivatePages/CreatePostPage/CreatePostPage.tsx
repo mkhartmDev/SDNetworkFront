@@ -20,7 +20,7 @@ class CreatePostPage extends Component<any, any> {
 
     onTextAreaChangeHandler = (event: any) => {
         this.setState({
-            textAreaInput: event?.target.value
+            textAreaInput: event.target.value
         })
     }
 
@@ -29,15 +29,17 @@ class CreatePostPage extends Component<any, any> {
     }
 
     onSubmitButtonPressHandler = () => {
-        const formData: any = new FormData();
 
-        formData.append(
-            this.props.username,
-            this.state.textAreaInput,
-            this.state.imageToUpload
-        );
+        let formData = new FormData();
+        
+        if (this.state.imageToUpload !== null){
+            formData.append('image', this.state.imageToUpload || "");
+        }
+        formData.append('textAreaInput', this.state.textAreaInput);
+        formData.append('username', this.props.userObject.username);
 
         // axios.post('postrequestURL', formData); // post request URL goes here
+        
     }
 
     render() {

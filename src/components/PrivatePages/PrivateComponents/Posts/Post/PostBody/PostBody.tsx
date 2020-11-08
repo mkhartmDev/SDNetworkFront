@@ -1,5 +1,6 @@
 import React, { Component } from 'react'
 import classes from './PostBody.module.sass'
+import { FiThumbsUp } from 'react-icons/fi'
 
 interface Props {
     
@@ -18,7 +19,7 @@ export default class PostBody extends Component<any, any> {
                     {this.props.postData.postText}
                 </div>
                 <div className={classes.PostButtonsContainer}>
-                    <div className={classes.Likes}>Likes: {this.props.numLikes}</div>
+                    <div className={classes.Likes}><FiThumbsUp />{this.props.postData.numLikes}</div>
                     <div className={classes.Spacer}></div>
                     <div className={classes.LikeButton}>Like</div>
                     <div className={classes.ViewButton}>View</div>

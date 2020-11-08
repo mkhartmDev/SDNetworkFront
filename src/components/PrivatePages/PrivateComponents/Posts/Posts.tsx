@@ -25,7 +25,8 @@ class Posts extends Component<any, any> {
                 "imagePost":true,
                 "imgURL":"https://photographylife.com/wp-content/uploads/2016/06/Mass.jpg",
                 "date":"2020-11-1",
-                "time":"8:29 PM"
+                "time":"8:29 PM",
+                "numLikes": 5
              },
              {
                 "username":"kyleaoki2",
@@ -35,7 +36,8 @@ class Posts extends Component<any, any> {
                 "imagePost":true,
                 "imgURL":"https://photographylife.com/wp-content/uploads/2016/06/Mass.jpg",
                 "date":"2020-11-1",
-                "time":"8:29 PM"
+                "time":"8:29 PM",
+                "numLikes": 5
              },
              {
                 "username":"kyleaoki3",
@@ -45,7 +47,8 @@ class Posts extends Component<any, any> {
                 "imagePost":true,
                 "imgURL":"https://photographylife.com/wp-content/uploads/2016/06/Mass.jpg",
                 "date":"2020-11-1",
-                "time":"8:29 PM"
+                "time":"8:29 PM",
+                "numLikes": 5
              }
         ];
     }
@@ -60,7 +63,8 @@ class Posts extends Component<any, any> {
                 "imagePost":true,
                 "imgURL":"https://upload.wikimedia.org/wikipedia/commons/e/e1/Gaoliang_Bridge.JPG",
                 "date":"2020-11-1",
-                "time":"8:29 PM"
+                "time":"8:29 PM",
+                "numLikes": 5
              },
              {
                 "username":"kyleaoki2",
@@ -70,7 +74,8 @@ class Posts extends Component<any, any> {
                 "imagePost":true,
                 "imgURL":"https://upload.wikimedia.org/wikipedia/commons/e/e1/Gaoliang_Bridge.JPG",
                 "date":"2020-11-1",
-                "time":"8:29 PM"
+                "time":"8:29 PM",
+                "numLikes": 5
              },
              {
                 "username": "kyleaoki3",
@@ -80,7 +85,8 @@ class Posts extends Component<any, any> {
                 "imagePost":true,
                 "imgURL":"https://upload.wikimedia.org/wikipedia/commons/e/e1/Gaoliang_Bridge.JPG",
                 "date":"2020-11-1",
-                "time":"8:29 PM"
+                "time":"8:29 PM",
+                "numLikes": 5
              }
         ];
     }
