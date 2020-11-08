@@ -43,6 +43,10 @@ class LogInPage extends Component<any, any> {
     }
   };
 
+  backButtonClickedHandler = () => {
+    this.props.history.push('/landing');
+};
+
   usernameOnChangeHandler = (event: any) => {
     this.setState({ usernameEntered: event.target.value });
   };
@@ -58,6 +62,7 @@ class LogInPage extends Component<any, any> {
     return (
       <div className={classes.LogInPageContainer}>
         <div className={classes.Controls}>
+        <div className={classes.BackButton} onClick={this.backButtonClickedHandler} >Back</div><br/>
           <div>username</div>
           <input
             onChange={this.usernameOnChangeHandler}
