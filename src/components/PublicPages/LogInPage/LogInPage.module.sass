@@ -1,0 +1,69 @@
+@import '../../../index'
+
+.LogInPageContainer
+    display: flex
+    flex-direction: column
+    justify-content: center
+    align-items: center
+    gap: 30px
+    height: 100vh
+    background-color: $faded-base-color
+
+
+.NavLink
+    text-decoration: none
+    color: white
+    background-color: $base-color
+    border: 2px solid white
+    border-radius: 4px
+    width: 200px
+    height: 30px
+    display: flex
+    flex-direction: column
+    justify-content: center
+    align-items: center
+.Controls
+    background-color: $subtle-offwhite-coloring
+    border: 2px solid black
+    padding: 50px
+    border-radius: 4px
+    box-shadow: 0px 8px 16px 0px #0000005e
+    margin-bottom: 300px
+
+.Controls:hover
+    transform: scale(1.01)
+.ButtonsContainer
+    display: flex
+    flex-direction: row
+    justify-content: center
+    align-items: center
+    gap: 45px
+
+.NavLink:hover
+    background-color: $hover-color
+
+.NavLink:active
+    background-color: $active-color
+
+    .BackButton
+    margin-right: auto
+    width: 110px
+    height: 40px
+    border-radius: 8px
+    border: 2px solid $base-color
+    display: flex
+    flex-direction: column
+    justify-content: center
+    align-items: center
+    background-color: $subtle-offwhite-coloring
+    color: $base-color
+
+.BackButton:hover
+    user-select: none
+    cursor: pointer
+    background-color: $hover-color
+    color: $subtle-offwhite-coloring
+
+.BackButton:active
+    background-color: $active-color
+    color: $subtle-offwhite-coloring
