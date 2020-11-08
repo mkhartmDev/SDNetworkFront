@@ -2,6 +2,8 @@ import React, { Component } from 'react'
 import classes from './LogInPage.module.sass'
 import { connect } from 'react-redux'
 import { withRouter } from 'react-router-dom'
+import Axios from 'axios'
+import { axiosInstance } from '../../../util/axiosConfig'
 
 interface Props {
     
@@ -20,14 +22,24 @@ class LogInPage extends Component<any, any> {
 
     logInHandler = async () => {
         const validateUser = async (username: any, password: any) => {
-            let apiCall = `https://jsonplaceholder.typicode.com/${username}/${password}`;
-            const response = await fetch(apiCall); // fake api, backend validation
-            const responseJSON = await response.json();
-            console.log(responseJSON);
-            if (responseJSON.address?.zipcode === '92998-3874') {
-                return 'VALID';
+           const response = await axiosInstance.post("/login", JSON.stringify({username: username, password: password}), {headers: {
+            'Access-Control-Allow-Origin': 'http://localhost:3000',
+            'Content-Type': 'application/json',
+          },});
+            // const response = await axiosInstance.
+            if(response.data){
+                console.log(response.data);
+                return 'VALID'
             }
-            return 'NOT VALID';
+            return 'NOT VALID'
+            // let apiCall = `https://jsonplaceholder.typicode.com/${username}/${password}`;
+            // const response = await fetch(apiCall); // fake api, backend validation
+            // const responseJSON = await response.json();
+            // console.log(responseJSON);
+            // if (responseJSON.address?.zipcode === '92998-3874') {
+            //     return 'VALID';
+            // }
+            // return 'NOT VALID';
         }
         let userIsValid = await validateUser(this.state.usernameEntered, this.state.passwordEntered);
         if (userIsValid === 'VALID') {
