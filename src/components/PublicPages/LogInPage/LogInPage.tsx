@@ -4,6 +4,7 @@ import { connect } from "react-redux";
 import { withRouter } from "react-router-dom";
 import { axiosInstance } from "../../../util/axiosConfig";
 import { User } from "../../../models/User";
+import { BiShow } from 'react-icons/bi'
 
 interface Props {}
 interface State {}
@@ -13,6 +14,7 @@ class LogInPage extends Component<any, any> {
     usernameEntered: "",
     passwordEntered: "",
     invalidLogInMessage: false,
+    showPassword: false
   };
 
   logInHandler = async () => {
@@ -45,7 +47,11 @@ class LogInPage extends Component<any, any> {
 
   backButtonClickedHandler = () => {
     this.props.history.push('/landing');
-};
+  };
+
+  showIconHandler = () => {
+    this.setState({showPassword: !this.state.showPassword});
+  };
 
   usernameOnChangeHandler = (event: any) => {
     this.setState({ usernameEntered: event.target.value });
@@ -56,23 +62,33 @@ class LogInPage extends Component<any, any> {
   };
 
   render() {
+
     let invalidMessage = this.state.invalidLogInMessage ? (
-      <div>Invalid Username or Password</div>
+      <div className={classes.InvalidMessage}>Invalid Username or Password</div>
     ) : null;
+
+    let showPassword = this.state.showPassword ? '' : 'password'
+    let showButtonClass = this.state.showPassword ? `${classes.ShowIcon} ${classes.ShowIconActive}` : classes.ShowIcon
+
     return (
       <div className={classes.LogInPageContainer}>
         <div className={classes.Controls}>
-        <div className={classes.BackButton} onClick={this.backButtonClickedHandler} >Back</div><br/>
-          <div>username</div>
-          <input
-            onChange={this.usernameOnChangeHandler}
-            value={this.state.usernameEntered}/>
-          <div >password</div>
-          <input
-            onChange={this.passwordOnChangeHandler}
-            value={this.state.passwordEntered}/>
-          <button className={classes.NavLink} onClick={this.logInHandler}>Log In</button>
-          <div>{invalidMessage}</div>
+          <div className={classes.BackButton} onClick={this.backButtonClickedHandler} >Back</div>
+
+          <div className={classes.UsernameAndPasswordFieldsContainer}>
+            <div className={classes.Field}>
+                <div className={classes.Label}>Username</div>
+                <input className={classes.Input} onChange={this.usernameOnChangeHandler} value={this.state.usernameEntered}/>
+            </div>
+            <div className={classes.Field}>
+                <div className={classes.Label}>Password</div>
+                <input className={classes.Input} type={showPassword} onChange={this.passwordOnChangeHandler} value={this.state.passwordEntered}/>
+                <BiShow className={showButtonClass} onClick={this.showIconHandler} />
+            </div>
+          </div>
+
+          <div className={classes.LogInButton} onClick={this.logInHandler}>Log In</div>
+          {invalidMessage}
         </div>
       </div>
     );
