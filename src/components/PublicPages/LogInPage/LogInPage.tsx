@@ -22,7 +22,8 @@ class LogInPage extends Component<any, any> {
     }
 
     logInHandler = async () => {
-        const validateUser = async (username: string, password: string) => {
+        //get user from api
+        const getUser = async (username: string, password: string) => {
             let response;
             try{
             return response = await axiosInstance.post("/login/", {username: username, password: password});
@@ -30,19 +31,11 @@ class LogInPage extends Component<any, any> {
                 console.log(error);
                 response = null;
             }
-            // let apiCall = `https://jsonplaceholder.typicode.com/${username}/${password}`;
-            // const response = await fetch(apiCall); // fake api, backend validation
-            // const responseJSON = await response.json();
-            // console.log(responseJSON);
-            // if (responseJSON.address?.zipcode === '92998-3874') {
-            //     return 'VALID';
-            // }
-            // return 'NOT VALID';
         }
-        let userIsValid = await validateUser(this.state.usernameEntered, this.state.passwordEntered);
-        if (userIsValid != null && userIsValid.data) {
-            const userObject : User = userIsValid.data; // api call goes here
-            console.log(userObject);
+        let user= await getUser(this.state.usernameEntered, this.state.passwordEntered);
+        //validate user
+        if (user != null && user.data) {
+            const userObject : User = user.data;
             this.props.authenticateUser(userObject);
             this.props.history.push(`/user/${userObject.username}`);
         } else {
@@ -82,7 +75,7 @@ const mapStateToProps = (state: any) => {
 
 const mapDispatchToProps = (dispatch: any) => {
     return {
-        authenticateUser: (userObject: any) => dispatch({type: 'AUTHENTICATE_USER', payload: { userObject: userObject }})
+        authenticateUser: (userObject: User) => dispatch({type: 'AUTHENTICATE_USER', payload: { userObject: userObject }})
     }
 }
 
