@@ -33,11 +33,6 @@ class UserPage extends Component<any, any> {
     componentDidMount(){
         this.fetchDataWithURLParam(); // axios.post('localhost:8080/getUser, username);
         // {"userId":1,"username":"a","password":null,"email":"a@z","firstName":"y","lastName":"y","pfpLink":null,"posts":[],"likes"}
-        let userObj = {};
-        axios.get("http://localhost:8080/SDNetwork/user/a").then(response => {
-            console.log(response.data);
-        });
-        console.log(userObj);
     }
 
     componentDidUpdate = (prevProps: any) => {
