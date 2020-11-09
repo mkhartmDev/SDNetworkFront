@@ -34,7 +34,7 @@ class SettingsPage extends Component<any, any> {
                     <div className={classes.BackButton} onClick={this.backButtonHandler}>Back</div>
                     <div className={classes.Form}>
 
-                        <ChangeProfilePicture />
+                        <ChangeProfilePicture {...this.props.userObject} />
                         <ChangePassword />
                         <ChangeEmail        userObject={this.props.userObject} />
                         <ChangeFirstName    userObject={this.props.userObject} />
