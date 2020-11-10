@@ -2,7 +2,7 @@ import React, { Component } from 'react'
 import NavBar from '../PrivateComponents/NavBar/NavBar'
 import classes from './CreatePostPage.module.sass'
 import { connect } from 'react-redux'
-import axios from 'axios'
+import { axiosInstance } from '../../../util/axiosConfig'
 
 interface Props {
     
@@ -30,15 +30,17 @@ class CreatePostPage extends Component<any, any> {
 
     onSubmitButtonPressHandler = () => {
 
-        let formData = new FormData();
-        
-        if (this.state.imageToUpload !== null){
-            formData.append('image', this.state.imageToUpload || "");
+        let post = {
+            "postId": 0,
+            "postText": this.state.textAreaInput,
+            "numberOfLikes": 0,
+            "imageLink": null,
+            "likedBy": [],
+            "posterId": this.props.userObject.userId,
+            "imagePost": false
         }
-        formData.append('textAreaInput', this.state.textAreaInput);
-        formData.append('username', this.props.userObject.username);
 
-        // axios.post('postrequestURL', formData); // post request URL goes here
+        axiosInstance.post('/posts/new', post);
         
     }
 

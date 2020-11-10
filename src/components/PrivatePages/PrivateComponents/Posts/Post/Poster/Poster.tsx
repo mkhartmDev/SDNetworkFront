@@ -19,9 +19,6 @@ class Poster extends Component<any, any> {
 
     render() {
 
-        // console.log("[In Poster] Props: ");
-        // console.log(this.props);
-
         const profilePicURL = this.props.s3BaseURL_ProfilePicture + this.props.username;
 
         return (

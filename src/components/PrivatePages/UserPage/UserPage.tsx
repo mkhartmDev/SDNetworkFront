@@ -6,6 +6,7 @@ import Posts from '../PrivateComponents/Posts/Posts'
 import NavBar from '../PrivateComponents/NavBar/NavBar'
 import { withRouter } from 'react-router-dom'
 import axios from 'axios'
+import { axiosInstance } from '../../../util/axiosConfig'
 
 interface Props {
     
@@ -23,10 +24,10 @@ class UserPage extends Component<any, any> {
 
 
     fetchDataWithURLParam = () => {
-        const usernameFromURLParameter = this.props.match.params.username;
         // use USERNAME from URLParam to get user object with api call
-        const userObject = { username: usernameFromURLParameter, firstName: 'Kyle', lastName: 'Aoki' }; // api call
-        this.setState({userObject: userObject});
+        axiosInstance.get('/user/' + this.props.match.params.username).then(response => {
+            this.setState({userObject: response.data})
+        });
         window.scrollTo(0, 0);
     }
 

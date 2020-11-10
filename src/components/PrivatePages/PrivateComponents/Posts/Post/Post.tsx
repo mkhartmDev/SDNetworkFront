@@ -16,8 +16,6 @@ class Post extends Component<any, any> {
 
     render() {
 
-        // console.log(this.props);
-
         let dateTime = `${this.props.postData.date} ${this.props.postData.time}`
         let image = !this.props.postData.imagePost ? null : (
 

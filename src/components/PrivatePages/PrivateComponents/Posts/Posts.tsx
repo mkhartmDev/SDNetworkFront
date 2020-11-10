@@ -24,7 +24,6 @@ class Posts extends Component<any, any> {
                     <Post postData={postData} />
                 );
             }
-            console.log(postArr);
             this.setState({PostArray: postArr});
         });
     }
@@ -37,7 +36,6 @@ class Posts extends Component<any, any> {
                     <Post postData={postData} />
                 );
             }
-            console.log(postArr);
             this.setState({PostArray: postArr});
         });
     }
@@ -46,7 +44,6 @@ class Posts extends Component<any, any> {
         if (this.props.ProfileOrFeed === 'PROFILE') {
             this.profileAPICall()
         } else {
-            console.log("[Feed Api Call]")
             this.feedAPICall();
         }
     }
