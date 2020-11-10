@@ -10,19 +10,24 @@ interface Props {}
 interface State {
   userObject: User;
   showPassword: boolean;
+  invalidLogInMessage : boolean;
 }
 
-class CreateAnAccountPage extends Component<any, any> {
+class CreateAnAccountPage extends Component<any, State> {
   constructor(props: any) {
     super(props);
     this.state = {
-      userId: 0,
+      ...this.state,
+      userObject : { userId: 0,
       username: "",
       password: "",
       email: "",
       firstName: "",
       lastName: "",
       pfpLink: "",
+    },
+    showPassword : false,
+    invalidLogInMessage : false
     };
     this.onChange = this.onChange.bind(this);
     this.createHandler = this.createHandler.bind(this);
@@ -33,10 +38,9 @@ class CreateAnAccountPage extends Component<any, any> {
     const getUser = async () => {
       let response;
       try {
-        let userObject = { ...this.state };
         return (response = await axiosInstance.post(
           "/user/new-user",
-          userObject
+         this.state.userObject
         ));
       } catch (error) {
         console.log(error);
@@ -45,7 +49,7 @@ class CreateAnAccountPage extends Component<any, any> {
     };
     let user = await getUser();
 
-    // ensure user was created, set global state of authenticated, and route to main page
+    //ensure user was created, set global state of authenticated, and route to main page
     if (user != null && user.data) {
       const userObject: User = user.data;
       this.props.authenticateUser(userObject);
@@ -58,7 +62,9 @@ class CreateAnAccountPage extends Component<any, any> {
   // change state when user types
   onChange(e: any) {
     e.preventDefault();
-    this.setState({ [e.target.name]: e.target.value });
+    this.setState({
+      userObject: {...this.state.userObject , [e.target.name] : e.target.value}
+    });
   }
 
   showIconHandler = () => {
@@ -74,6 +80,9 @@ class CreateAnAccountPage extends Component<any, any> {
     let showButtonClass = this.state.showPassword
       ? `${classes.ShowIcon} ${classes.ShowIconActive}`
       : classes.ShowIcon;
+      let invalidMessage = this.state.invalidLogInMessage ? (
+        <div className={classes.InvalidMessage}>Invalid Username or Password</div>
+      ) : null;
 
     return (
       <div className={classes.CreateAnAccountPageContainer}>
@@ -94,7 +103,7 @@ class CreateAnAccountPage extends Component<any, any> {
                 spellCheck="false"
                 name="username"
                 onChange={this.onChange}
-                value={this.state.username}
+                value={this.state.userObject.username}
               />
             </div>
             {/* password */}
@@ -106,7 +115,7 @@ class CreateAnAccountPage extends Component<any, any> {
                 spellCheck="false"
                 name="password"
                 onChange={this.onChange}
-                value={this.state.password}
+                value={this.state.userObject.password}
               />
               <BiShow
                 onClick={this.showIconHandler}
@@ -121,7 +130,7 @@ class CreateAnAccountPage extends Component<any, any> {
                 spellCheck="false"
                 name="email"
                 onChange={this.onChange}
-                value={this.state.email}
+                value={this.state.userObject.email}
               />
             </div>
             {/* First Name */}
@@ -132,7 +141,7 @@ class CreateAnAccountPage extends Component<any, any> {
                 spellCheck="false"
                 name="firstName"
                 onChange={this.onChange}
-                value={this.state.firstName}
+                value={this.state.userObject.firstName}
               />
             </div>
             {/* Last Name */}
@@ -143,7 +152,7 @@ class CreateAnAccountPage extends Component<any, any> {
                 spellCheck="false"
                 name="lastName"
                 onChange={this.onChange}
-                value={this.state.lastName}
+                value={this.state.userObject.lastName}
               />
             </div>
           </div>
@@ -151,6 +160,7 @@ class CreateAnAccountPage extends Component<any, any> {
           <div className={classes.SubmitButton} onClick={this.createHandler}>
             Submit
           </div>
+          {invalidMessage}
         </div>
       </div>
     );
