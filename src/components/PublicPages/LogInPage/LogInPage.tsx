@@ -35,7 +35,7 @@ class LogInPage extends Component<any, any> {
       this.state.usernameEntered,
       this.state.passwordEntered
     );
-    //validate user
+    // validate user
     if (user != null && user.data) {
       const userObject: User = user.data;
       this.props.authenticateUser(userObject);
