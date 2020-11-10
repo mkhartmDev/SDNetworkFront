@@ -33,7 +33,7 @@ class CreateAnAccountPage extends Component<any, any> {
     const getUser = async () => {
       let response;
       try {
-          let userObject  = this.state as User;
+          let userObject  = {...this.state};
           console.log(userObject);
         return (response = await axiosInstance.post("/user/new-user", 
             userObject
