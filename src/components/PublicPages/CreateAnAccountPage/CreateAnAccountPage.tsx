@@ -16,7 +16,7 @@ class CreateAnAccountPage extends Component<any, any> {
   constructor(props: any) {
     super(props);
     this.state = {
-        userId: 0,
+      userId: 0,
       username: "",
       password: "",
       email: "",
@@ -29,14 +29,14 @@ class CreateAnAccountPage extends Component<any, any> {
   }
 
   createHandler = async () => {
-    //get user from api
+    //get send an get new user from api
     const getUser = async () => {
       let response;
       try {
-          let userObject  = {...this.state};
-          console.log(userObject);
-        return (response = await axiosInstance.post("/user/new-user", 
-            userObject
+        let userObject = { ...this.state };
+        return (response = await axiosInstance.post(
+          "/user/new-user",
+          userObject
         ));
       } catch (error) {
         console.log(error);
@@ -44,7 +44,8 @@ class CreateAnAccountPage extends Component<any, any> {
       }
     };
     let user = await getUser();
-    // ensure user was created
+
+    // ensure user was created, set global state of authenticated, and route to main page
     if (user != null && user.data) {
       const userObject: User = user.data;
       this.props.authenticateUser(userObject);
@@ -54,9 +55,10 @@ class CreateAnAccountPage extends Component<any, any> {
     }
   };
 
+  // change state when user types
   onChange(e: any) {
-      e.preventDefault();
-    this.setState({[e.target.name]: e.target.value });
+    e.preventDefault();
+    this.setState({ [e.target.name]: e.target.value });
   }
 
   showIconHandler = () => {
@@ -76,12 +78,14 @@ class CreateAnAccountPage extends Component<any, any> {
     return (
       <div className={classes.CreateAnAccountPageContainer}>
         <div className={classes.CreateAccountForm}>
+          {/* back button */}
           <div
             className={classes.BackButton}
             onClick={this.backButtonClickedHandler}
           >
             Back
           </div>
+          {/* username */}
           <div className={classes.FormField}>
             <div className={classes.Field}>
               <div className={classes.Label}>Username</div>
@@ -93,6 +97,7 @@ class CreateAnAccountPage extends Component<any, any> {
                 value={this.state.username}
               />
             </div>
+            {/* password */}
             <div className={classes.Password}>
               <div className={classes.Label}>Password</div>
               <input
@@ -108,6 +113,7 @@ class CreateAnAccountPage extends Component<any, any> {
                 className={showButtonClass}
               />
             </div>
+            {/* email */}
             <div className={classes.Field}>
               <div className={classes.Label}>Email</div>
               <input
@@ -118,6 +124,7 @@ class CreateAnAccountPage extends Component<any, any> {
                 value={this.state.email}
               />
             </div>
+            {/* First Name */}
             <div className={classes.Field}>
               <div className={classes.Label}>First Name</div>
               <input
@@ -128,6 +135,7 @@ class CreateAnAccountPage extends Component<any, any> {
                 value={this.state.firstName}
               />
             </div>
+            {/* Last Name */}
             <div className={classes.Field}>
               <div className={classes.Label}>Last Name</div>
               <input
@@ -139,14 +147,15 @@ class CreateAnAccountPage extends Component<any, any> {
               />
             </div>
           </div>
-          <div className={classes.SubmitButton} onClick={this.createHandler}>Submit</div>
+          {/* Submit for create user */}
+          <div className={classes.SubmitButton} onClick={this.createHandler}>
+            Submit
+          </div>
         </div>
       </div>
     );
   }
 }
-
-//export default withRouter(CreateAnAccountPage);
 
 const mapStateToProps = (state: any) => {
   return {
@@ -157,7 +166,6 @@ const mapStateToProps = (state: any) => {
 const mapDispatchToProps = (dispatch: any) => {
   return {
     authenticateUser: (userObject: User) =>
-    
       dispatch({
         type: "AUTHENTICATE_USER",
         payload: { userObject: userObject },
