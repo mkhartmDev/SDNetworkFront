@@ -81,7 +81,7 @@ class CreateAnAccountPage extends Component<any, State> {
       ? `${classes.ShowIcon} ${classes.ShowIconActive}`
       : classes.ShowIcon;
       let invalidMessage = this.state.invalidLogInMessage ? (
-        <div className={classes.InvalidMessage}>Invalid Username or Password</div>
+        <div className={classes.InvalidMessage}>Please pick a unique Username and Password</div>
       ) : null;
 
     return (
