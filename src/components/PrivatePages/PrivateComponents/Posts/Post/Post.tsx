@@ -16,6 +16,8 @@ class Post extends Component<any, any> {
 
     render() {
 
+        // console.log(this.props);
+
         let dateTime = `${this.props.postData.date} ${this.props.postData.time}`
         let image = !this.props.postData.imagePost ? null : (
 
@@ -31,7 +33,7 @@ class Post extends Component<any, any> {
         return (
             <div className={classes.PostContainer}>
                 <div className={classes.LeftSide}>
-                    <Poster {...this.props.postData} />
+                    <Poster {...this.props.postData.posterId} />
                 </div>
                 <div className={classes.RightSide}>
                     {image}
