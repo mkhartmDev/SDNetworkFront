@@ -17,7 +17,6 @@ class CreateAnAccountPage extends Component<any, State> {
   constructor(props: any) {
     super(props);
     this.state = {
-      ...this.state,
       userObject : { userId: 0,
       username: "",
       password: "",
