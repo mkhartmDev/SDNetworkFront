@@ -7,7 +7,7 @@ import { createStore } from 'redux'
 import { Provider } from 'react-redux'
 import reducer from './reducer/reducer';
 import { composeWithDevTools  } from 'redux-devtools-extension'
-import 'bootstrap/dist/css/bootstrap-modal.css';
+import './bootstrap/bootstrap-modal.css';
 
 
 const store = createStore(reducer,  composeWithDevTools());
