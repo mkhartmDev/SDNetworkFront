@@ -36,7 +36,7 @@ class ChangeProfilePicture extends Component<any, any> {
 
 
         getBase64(this.state.imageToUpload, function(b64Data: any){
-            axiosInstance.post('/upload-image', {username: username, b64: b64Data}).then(response => {
+            axiosInstance.post('/upload-image/change-profile-picture', {username: username, b64: b64Data}).then(response => {
                 if (response.status == 200) {
                     setTimeout(reloadPage, 500);
                 }

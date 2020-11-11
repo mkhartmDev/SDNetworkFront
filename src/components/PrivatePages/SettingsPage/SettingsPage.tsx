@@ -27,7 +27,7 @@ class SettingsPage extends Component<any, any> {
     }
 
     render() {
-
+        console.log(this.props.userObject);
         return (
         <div className={classes.Body}>
             <NavBar />

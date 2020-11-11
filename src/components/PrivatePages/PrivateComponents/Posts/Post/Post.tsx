@@ -31,7 +31,7 @@ class Post extends Component<any, any> {
         return (
             <div className={classes.PostContainer}>
                 <div className={classes.LeftSide}>
-                    <Poster {...this.props.postData} />
+                    <Poster {...this.props.postData.posterId} />
                 </div>
                 <div className={classes.RightSide}>
                     {image}

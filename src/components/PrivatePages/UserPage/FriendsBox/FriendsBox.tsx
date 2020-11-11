@@ -1,4 +1,5 @@
 import React, { Component } from 'react'
+import { axiosInstance } from '../../../../util/axiosConfig';
 import classes from './FriendsBox.module.sass'
 import FriendSquare from './FriendSquare/FriendSquare';
 
@@ -11,7 +12,9 @@ interface State {
 
 export default class FriendsBox extends Component<Props, State> {
 
-    state = {}
+    state = {
+        friendSquaresArr: []
+    }
 
     generateFriendSquares = () => {
         let squareArr = [];
@@ -23,13 +26,23 @@ export default class FriendsBox extends Component<Props, State> {
         return squareArr;
     }
 
-    render() {
+    componentDidMount(){
+        axiosInstance.get('/user/all').then(response => {
+            let squareArr: any = [];
+            for (let userObj of response.data){
+                squareArr.push(
+                    <FriendSquare key={userObj.username} {...userObj} />
+                );
+            }
+            this.setState({friendSquaresArr: squareArr});
+        });
+    }
 
-        let friendSquares = this.generateFriendSquares();
+    render() {
 
         return (
             <div className={classes.FriendsBoxContainer}>
-                {friendSquares}
+                {this.state.friendSquaresArr}
             </div>
         )
     }
