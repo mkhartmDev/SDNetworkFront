@@ -35,12 +35,13 @@ class Posts extends Component<any, any> {
     }
 
     render() {
-
         let postArr = [];
-        for (let postData of this.props.responseData){
-            postArr.push(
-                <Post {...postData} />
-            );
+        if (this.props.ProfileOrFeed === 'PROFILE'){
+            for (let postData of this.props.responseData){
+                postArr.push(
+                    <Post {...postData} />
+                );
+            }
         }
         let posts = this.props.ProfileOrFeed === 'PROFILE' ? postArr : this.state.PostArray;
 
