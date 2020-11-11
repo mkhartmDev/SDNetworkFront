@@ -30,6 +30,11 @@ class CreatePostPage extends Component<any, any> {
 
     onSubmitButtonPressHandler = () => {
 
+        const isImagePost = this.state.imageToUpload != null
+
+        console.log(isImagePost);
+        console.log(this.props.userObject);
+
         let post = {
             "postId": 0,
             "postText": this.state.textAreaInput,
@@ -37,10 +42,25 @@ class CreatePostPage extends Component<any, any> {
             "imageLink": null,
             "likedBy": [],
             "posterId": this.props.userObject.userId,
-            "imagePost": false
+            "imagePost": isImagePost
         }
 
-        axiosInstance.post('/posts/new', post);
+        let username: any = this.props.userObject.username;
+
+        function getBase64 (file: any, callback: any) {
+            const reader = new FileReader();
+            reader.addEventListener('load', () => callback(reader.result));
+            reader.readAsDataURL(file);
+        }
+
+        axiosInstance.post('/posts/new', post).then(
+            response => {
+                if (isImagePost) {
+                    getBase64(this.state.imageToUpload, function(b64Data: any){
+                        axiosInstance.post('/upload-image/new-post', {postId: response.data.postId, b64: b64Data}).then(response => console.log(response))
+                    });
+                }
+        });
         
     }
 

@@ -19,14 +19,18 @@ interface State {
 class UserPage extends Component<any, any> {
 
     state = {
-        userObject: {}
+        userObject: {},
+        responseData: []
     }
 
 
     fetchDataWithURLParam = () => {
         // use USERNAME from URLParam to get user object with api call
         axiosInstance.get('/user/' + this.props.match.params.username).then(response => {
-            this.setState({userObject: response.data})
+            const userObject = response.data;
+            axiosInstance.get(`/posts/userid/${userObject.userId}`).then(response => {
+                this.setState({userObject: userObject, responseData: response.data});
+            });
         });
         window.scrollTo(0, 0);
     }
@@ -44,6 +48,8 @@ class UserPage extends Component<any, any> {
 
     render() {
 
+
+
         return (
             <div className={classes.Body}>
                 <NavBar />
@@ -54,7 +60,7 @@ class UserPage extends Component<any, any> {
                             <FriendsBox />
                         </div>
                         <div className={classes.RightSide}>
-                            <Posts {...this.state.userObject} ProfileOrFeed='PROFILE' />
+                            <Posts {...this.state} ProfileOrFeed='PROFILE' />
                         </div>
                     </div>
                 </div>

@@ -1,4 +1,5 @@
 import React, { Component } from 'react'
+import { connect } from 'react-redux'
 import classes from './Post.module.sass'
 import PostBody from './PostBody/PostBody'
 import Poster from './Poster/Poster'
@@ -16,13 +17,15 @@ class Post extends Component<any, any> {
 
     render() {
 
-        let dateTime = `${this.props.postData.date} ${this.props.postData.time}`
-        let image = !this.props.postData.imagePost ? null : (
+        let imageURL = this.props.s3BaseURL_Post + this.props.postId;
+
+        let dateTime = `${this.props.date} ${this.props.time}`
+        let image = !this.props.imagePost ? null : (
 
             <div className={classes.DateImageContainer}>
                 <div className={classes.dateTime}>{dateTime}</div>
                 <div className={classes.ImageContainer}>
-                    <img className={classes.PostImage} src={this.props.postData.imgURL} alt="pic" />
+                    <img className={classes.PostImage} src={imageURL} alt="pic" />
                 </div>
             </div>
             
@@ -31,15 +34,21 @@ class Post extends Component<any, any> {
         return (
             <div className={classes.PostContainer}>
                 <div className={classes.LeftSide}>
-                    <Poster {...this.props.postData.posterId} />
+                    <Poster {...this.props.posterId} />
                 </div>
                 <div className={classes.RightSide}>
                     {image}
-                    <PostBody postData={this.props.postData} />
+                    <PostBody postData={this.props} />
                 </div>
             </div>
         )
     }
 }
 
-export default Post;
+const mapStateToProps = (state: any) => {
+    return {
+        s3BaseURL_Post: state.s3BaseURL_Post
+    }
+}
+
+export default connect(mapStateToProps, null)(Post);
