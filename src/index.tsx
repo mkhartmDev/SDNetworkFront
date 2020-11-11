@@ -7,6 +7,8 @@ import { createStore } from 'redux'
 import { Provider } from 'react-redux'
 import reducer from './reducer/reducer';
 import { composeWithDevTools  } from 'redux-devtools-extension'
+import 'bootstrap/dist/css/bootstrap.css';
+
 
 const store = createStore(reducer,  composeWithDevTools());
 
