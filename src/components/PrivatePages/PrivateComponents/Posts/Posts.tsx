@@ -21,7 +21,7 @@ class Posts extends Component<any, any> {
             let postArr = [];
             for (let postData of response.data){
                 postArr.push(
-                    <Post postData={postData} />
+                    <Post {...postData} />
                 );
             }
             this.setState({PostArray: postArr});
@@ -33,7 +33,7 @@ class Posts extends Component<any, any> {
             let postArr = [];
             for (let postData of response.data){
                 postArr.push(
-                    <Post postData={postData} />
+                    <Post {...postData} />
                 );
             }
             this.setState({PostArray: postArr});
