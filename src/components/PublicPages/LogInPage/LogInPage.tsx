@@ -5,6 +5,7 @@ import { withRouter } from "react-router-dom";
 import { axiosInstance } from "../../../util/axiosConfig";
 import { User } from "../../../models/User";
 import { BiShow } from 'react-icons/bi'
+import ForgotModal from "../PublicComponents/ForgotModal";
 
 interface Props {}
 interface State {}
@@ -89,6 +90,7 @@ class LogInPage extends Component<any, any> {
 
           <div className={classes.LogInButton} onClick={this.logInHandler}>Log In</div>
           {invalidMessage}
+          <ForgotModal></ForgotModal>
         </div>
       </div>
     );
