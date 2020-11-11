@@ -6,9 +6,11 @@ import NavBar from '../PrivateComponents/NavBar/NavBar'
 import { connect } from 'react-redux'
 import ChangeProfilePicture from './Sections/ChangeProfilePicture'
 import ChangePassword from './Sections/ChangePassword'
-import ChangeEmail from './Sections/ChangeEmail'
-import ChangeFirstName from './Sections/ChangeFirstName'
-import ChangeLastName from './Sections/ChangeLastName'
+import UpdateUserForm from './Sections/UpdateUserForm'
+import { parseConfigFileTextToJson } from 'typescript'
+import { axiosInstance } from '../../../util/axiosConfig'
+import { User } from '../../../models/User'
+import UserPage from '../UserPage/UserPage'
 
 interface Props {
     
@@ -35,10 +37,10 @@ class SettingsPage extends Component<any, any> {
                     <div className={classes.Form}>
 
                         <ChangeProfilePicture {...this.props.userObject} />
+                        <UpdateUserForm fieldName="First Name" field="firstName" current={this.props.userObject.firstName} handler={handleSubmit}/>
+                        <UpdateUserForm fieldName="Last Name" current={this.props.userObject.Last}/>
+                        <UpdateUserForm fieldName="email" current={this.props.userObject.email}/>
                         <ChangePassword />
-                        <ChangeEmail        userObject={this.props.userObject} />
-                        <ChangeFirstName    userObject={this.props.userObject} />
-                        <ChangeLastName     userObject={this.props.userObject} />
 
                     </div>
                     <div className={classes.BottomSpacer}></div>
@@ -56,5 +58,16 @@ const mapStateToProps = (state: any) => {
         s3BaseURL_ProfilePicture: state.s3BaseURL_ProfilePicture
     }
 }
+
+const handleSubmit = (field:string,userObject:User)=>{
+    const axios = axiosInstance;
+    const newField = document.getElementById('input '+field)?.innerText;
+    Object.defineProperty(userObject,field,{value:newField});
+    console.log(userObject);
+
+
+    
+}
+
 
 export default withRouter(connect(mapStateToProps, null)(SettingsPage));

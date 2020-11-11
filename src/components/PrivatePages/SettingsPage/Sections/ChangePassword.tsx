@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import classes from '../SettingsPage.module.sass'
-import { BiShow } from 'react-icons/bi'
+import { BiAlignMiddle, BiMessageRoundedMinus, BiShow } from 'react-icons/bi'
 
 interface Props {
     
@@ -31,6 +31,7 @@ class ChangePassword extends Component<Props, State> {
                         <div>New Password</div>
                         <input type={showPassword} className={classes.Input}></input>
                         <BiShow onClick={this.showIconHandler} className={showButtonClass}/>
+                        
                     </div>
                     <div className={classes.ApplyButton}>Apply</div>
                 </div>               
