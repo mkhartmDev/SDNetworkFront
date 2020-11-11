@@ -37,10 +37,16 @@ class SettingsPage extends Component<any, any> {
                     <div className={classes.Form}>
 
                         <ChangeProfilePicture {...this.props.userObject} />
+
                         <UpdateUserForm fieldName="First Name" field="firstName" current={this.props.userObject.firstName} handler={handleSubmit}/>
                         <UpdateUserForm fieldName="Last Name" current={this.props.userObject.Last}/>
                         <UpdateUserForm fieldName="email" current={this.props.userObject.email}/>
-                        <ChangePassword />
+                
+=======
+                        <ChangePassword     userObject={this.props.userObject} />
+                        {/* <ChangeEmail        userObject={this.props.userObject} />
+                        <ChangeFirstName    userObject={this.props.userObject} />
+                        <ChangeLastName     userObject={this.props.userObject} /> */}
 
                     </div>
                     <div className={classes.BottomSpacer}></div>

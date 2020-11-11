@@ -12,6 +12,7 @@ let initialState: any = {
     authenticated: true,
     searchInput: '',
     s3BaseURL_ProfilePicture: "https://images-project2-kyle.s3-us-west-1.amazonaws.com/profile-picture/",
+    s3BaseURL_Post: "https://images-project2-kyle.s3-us-west-1.amazonaws.com/posts/",
     userObject: getUserObject()
 }
 
