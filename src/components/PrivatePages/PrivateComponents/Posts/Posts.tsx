@@ -28,31 +28,25 @@ class Posts extends Component<any, any> {
         });
     }
 
-    profileAPICall = () => {
-        axiosInstance.get('/posts/all').then(response => {
-            let postArr = [];
-            for (let postData of response.data){
-                postArr.push(
-                    <Post {...postData} />
-                );
-            }
-            this.setState({PostArray: postArr});
-        });
-    }
-
     componentDidMount() {
-        if (this.props.ProfileOrFeed === 'PROFILE') {
-            this.profileAPICall()
-        } else {
+        if (this.props.ProfileOrFeed !== 'PROFILE') {
             this.feedAPICall();
         }
     }
 
     render() {
 
+        let postArr = [];
+        for (let postData of this.props.responseData){
+            postArr.push(
+                <Post {...postData} />
+            );
+        }
+        let posts = this.props.ProfileOrFeed === 'PROFILE' ? postArr : this.state.PostArray;
+
         return (
             <div className={classes.PostList}>
-                {this.state.PostArray}
+                {posts}
             </div>
         )
     }
