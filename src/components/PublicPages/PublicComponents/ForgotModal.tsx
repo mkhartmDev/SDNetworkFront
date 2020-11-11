@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import {Button, Modal, ModalHeader, ModalBody, ModalFooter } from 'reactstrap';
+import {Modal, ModalHeader, ModalBody, ModalFooter } from 'reactstrap';
 import classes from "./Forgot.module.sass";
 import { axiosInstance } from "../../../util/axiosConfig";
 
@@ -21,7 +21,7 @@ export const ForgotModal = () => {
     <div>
         <a onClick={toggle}>Forgot Password</a>
       <Modal isOpen={modal} toggle={toggle} >
-        <ModalHeader toggle={toggle}>Forgot Password</ModalHeader>
+        <ModalHeader toggle={toggle}><div className={classes.Label}>Forgot Password</div></ModalHeader>
         <ModalBody>
         <div className={classes.ForgotFieldsContainer}>
         <div className={classes.Field}>
@@ -32,7 +32,7 @@ export const ForgotModal = () => {
         </div>
         </ModalBody>
         <ModalFooter>
-        <Button className={classes.ForgotButton} onClick={forgotHandler} >Submit</Button>{' '}
+        <div className={classes.ForgotButton} onClick={forgotHandler} >Submit</div>{' '}
         </ModalFooter>
       </Modal>
     </div>
