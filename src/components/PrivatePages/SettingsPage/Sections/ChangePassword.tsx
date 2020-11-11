@@ -32,7 +32,6 @@ class ChangePassword extends Component<any, any> {
 
     setPass = async (event: any) => {
         this.setState({ passwordEntered: event.target.value });
-        console.log(event.target.value);
     }
 
     render() {
