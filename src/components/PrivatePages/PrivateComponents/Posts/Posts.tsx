@@ -19,7 +19,7 @@ class Posts extends Component<any, any> {
     feedAPICall = () => {
         axiosInstance.get('/posts/all').then(response => {
             let postArr = [];
-            for (let postData of response.data){
+            for (let postData of response.data.reverse()){
                 postArr.push(
                     <Post {...postData} />
                 );
@@ -35,12 +35,15 @@ class Posts extends Component<any, any> {
     }
 
     render() {
-        let postArr = [];
+        let postArr: any = [];
         if (this.props.ProfileOrFeed === 'PROFILE'){
             for (let postData of this.props.responseData){
                 postArr.push(
                     <Post {...postData} />
                 );
+            }
+            if (postArr.length == 0) {
+                postArr = <h1>You Don't Have Any Posts</h1>
             }
         }
         let posts = this.props.ProfileOrFeed === 'PROFILE' ? postArr : this.state.PostArray;

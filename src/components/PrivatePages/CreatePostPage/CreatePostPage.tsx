@@ -15,7 +15,8 @@ class CreatePostPage extends Component<any, any> {
 
     state = {
         textAreaInput: '',
-        imageToUpload: null
+        imageToUpload: null,
+        profilePictureURL: this.props.s3BaseURL_ProfilePicture + this.props.userObject.username
     }
 
     onTextAreaChangeHandler = (event: any) => {
@@ -31,9 +32,6 @@ class CreatePostPage extends Component<any, any> {
     onSubmitButtonPressHandler = () => {
 
         const isImagePost = this.state.imageToUpload != null
-
-        console.log(isImagePost);
-        console.log(this.props.userObject);
 
         let post = {
             "postId": 0,
@@ -64,9 +62,11 @@ class CreatePostPage extends Component<any, any> {
         
     }
 
-    render() {
+    profilePictureOnErrorHandler = () => {
+        this.setState({profilePictureURL: this.props.s3BaseURL_ProfilePicture + 'default/default'});
+    }
 
-        const profilePictureURL = this.props.s3BaseURL_ProfilePicture + this.props.userObject.username;
+    render() {
 
         return (
             <div className={classes.Body}>
@@ -75,8 +75,12 @@ class CreatePostPage extends Component<any, any> {
                 <div className={classes.CreatePostContainer}>
 
                     <div className={classes.PosterAndTextArea}>
-                        <div className={classes.ProfilePicContainer}>
-                            <img className={classes.ProfilePic} src={profilePictureURL} alt="pic" />
+                        <div className={classes.ProfilePicAndNameContainer}>
+                            <div className={classes.ProfilePicContainer}>
+                                <div className={classes.ProfilePicImageContainer}>
+                                    <img className={classes.ProfilePic} src={this.state.profilePictureURL} alt="pic" onError={this.profilePictureOnErrorHandler}/>
+                                </div>
+                            </div>
                             <div className={classes.PosterName}>{this.props.userObject.firstName} {this.props.userObject.lastName}</div>
                         </div>
                         <textarea 
