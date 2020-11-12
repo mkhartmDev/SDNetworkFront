@@ -362,6 +362,7 @@ class SearchPage extends Component<any, any> {
         let test = this.props.match.params.searchInput
         let response = axiosInstance.post("/user/search", this.props.match.params.searchInput ).then(
             response => {
+                console.log(response);
                 const searchResultsQuantity = response.data.length;
                 this.setState({
                     searchResults: response.data,
@@ -369,7 +370,7 @@ class SearchPage extends Component<any, any> {
         });
             }
         );
-        console.log(response);
+        
     }
 
     componentDidUpdate = (prevProps: any) => {
