@@ -3,6 +3,8 @@ import NavBar from '../PrivateComponents/NavBar/NavBar'
 import classes from './CreatePostPage.module.sass'
 import { connect } from 'react-redux'
 import { axiosInstance } from '../../../util/axiosConfig'
+import { withRouter } from 'react-router-dom'
+import { CircleSpinner } from 'react-spinners-kit'
 
 interface Props {
     
@@ -16,7 +18,8 @@ class CreatePostPage extends Component<any, any> {
     state = {
         textAreaInput: '',
         imageToUpload: null,
-        profilePictureURL: this.props.s3BaseURL_ProfilePicture + this.props.userObject.username
+        profilePictureURL: this.props.s3BaseURL_ProfilePicture + this.props.userObject.username,
+        loading: false
     }
 
     onTextAreaChangeHandler = (event: any) => {
@@ -29,9 +32,16 @@ class CreatePostPage extends Component<any, any> {
         this.setState({imageToUpload: event.target.files[0]});
     }
 
+    toFeed = () => {
+        this.props.history.push('/feed');
+    }
+
     onSubmitButtonPressHandler = () => {
 
+        this.setState({loading: true});
+
         const isImagePost = this.state.imageToUpload != null
+        const toFeedFunc: any = this.toFeed;
 
         let post = {
             "postId": 0,
@@ -55,10 +65,11 @@ class CreatePostPage extends Component<any, any> {
             response => {
                 if (isImagePost) {
                     getBase64(this.state.imageToUpload, function(b64Data: any){
-                        axiosInstance.post('/upload-image/new-post', {postId: response.data.postId, b64: b64Data}).then(response => console.log(response))
+                        axiosInstance.post('/upload-image/new-post', {postId: response.data.postId, b64: b64Data})
+                        .then(response => console.log(response))
                     });
                 }
-        });
+        }).finally( () => toFeedFunc() );
         
     }
 
@@ -67,6 +78,8 @@ class CreatePostPage extends Component<any, any> {
     }
 
     render() {
+
+        let buttonText = this.state.loading ? <CircleSpinner size={30} color="#f5f5f5" /> : "Submit Post";
 
         return (
             <div className={classes.Body}>
@@ -102,7 +115,7 @@ class CreatePostPage extends Component<any, any> {
                             />
                     </div>
                     
-                    <div className={classes.SubmitButton} onClick={this.onSubmitButtonPressHandler}>Submit Post</div>
+                    <div className={classes.SubmitButton} onClick={this.onSubmitButtonPressHandler}>{buttonText}</div>
                 </div>
             </div>
         </div>
@@ -118,4 +131,4 @@ const mapStateToProps = (state: any) => {
     }
 }
 
-export default connect(mapStateToProps, null)(CreatePostPage);
+export default withRouter(connect(mapStateToProps, null)(CreatePostPage));
