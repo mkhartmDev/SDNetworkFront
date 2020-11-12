@@ -10,9 +10,18 @@ interface State {
 }
 
 export default class PostBody extends Component<any, any> {
-    state = {}
+    state = {
+        userLikedPost: false
+    }
+
+    onLikeButtonPressedHandler = () => {
+        
+    }
 
     render() {
+
+
+
         return (
             <div className={classes.PostBodyContainer}>
                 <div className={classes.PostBody}>
@@ -21,8 +30,7 @@ export default class PostBody extends Component<any, any> {
                 <div className={classes.PostButtonsContainer}>
                     <div className={classes.Likes}><FiThumbsUp />{this.props.postData.numLikes}</div>
                     <div className={classes.Spacer}></div>
-                    <div className={classes.LikeButton}>Like</div>
-                    <div className={classes.ViewButton}>View</div>
+                    <div className={classes.LikeButton} onClick={this.onLikeButtonPressedHandler}>Like</div>
                 </div>
             </div>
         )
