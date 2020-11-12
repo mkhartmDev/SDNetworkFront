@@ -37,7 +37,7 @@ class Posts extends Component<any, any> {
     render() {
         let postArr: any = [];
         if (this.props.ProfileOrFeed === 'PROFILE'){
-            for (let postData of this.props.responseData){
+            for (let postData of this.props.responseData.reverse()){
                 postArr.push(
                     <Post {...postData} />
                 );

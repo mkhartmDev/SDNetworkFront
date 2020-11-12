@@ -1,5 +1,6 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
+import { withRouter } from 'react-router-dom'
 import classes from './FriendSquare.module.sass'
 
 interface Props {
@@ -17,10 +18,14 @@ class FriendSquare extends Component<any, any> {
         this.setState({profilePicture: this.props.s3BaseURL_ProfilePicture + "default/default"});
     }
 
+    squareOnClickHandler = () => {
+        this.props.history.push(`/user/${this.props.username}`);
+    }
+
     render() {
 
         return (
-            <div className={classes.FriendSquare}>
+            <div className={classes.FriendSquare} onClick={this.squareOnClickHandler}>
                 <div className={classes.ProfilePicContainer}>
                     <img className={classes.ProfilePic} onError={this.onImageErrorHandler} src={this.state.profilePicture} alt="profilePic"/>
                 </div>
@@ -38,4 +43,4 @@ const mapStateToProps = (state: any) => {
     };
 }
 
-export default connect(mapStateToProps, null)(FriendSquare);
+export default withRouter(connect(mapStateToProps, null)(FriendSquare));

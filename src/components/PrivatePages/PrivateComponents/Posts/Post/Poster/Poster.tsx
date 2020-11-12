@@ -23,6 +23,12 @@ class Poster extends Component<any, any> {
         this.setState({profilePictureURL: this.props.s3BaseURL_ProfilePicture + 'default/default'});
     }
 
+    componentDidUpdate = (prevProps: any) => {
+        if (this.props.username !== prevProps.username ) {
+            this.setState({profilePictureURL: this.props.s3BaseURL_ProfilePicture + this.props.username});
+        };
+    }
+
     render() {
 
         return (
