@@ -87,10 +87,11 @@ class LogInPage extends Component<any, any> {
                 <BiShow className={showButtonClass} onClick={this.showIconHandler} />
             </div>
           </div>
-
-          <div className={classes.LogInButton} onClick={this.logInHandler}>Log In</div>
+          <div className={classes.LowerButtons}>
+            <ForgotModal></ForgotModal>
+            <div className={classes.LogInButton} onClick={this.logInHandler}>Log In</div>
+          </div>
           {invalidMessage}
-          <ForgotModal></ForgotModal>
         </div>
       </div>
     );
