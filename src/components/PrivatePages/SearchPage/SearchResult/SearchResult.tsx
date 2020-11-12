@@ -11,21 +11,32 @@ interface State {
 }
 
 class SearchResult extends Component<any, any> {
-    state = {}
+    state = {
+        profilePicError: false
+    }
 
     searchResultOnClickHandler = () => {
         const userURL = '/user/' + this.props.username;
         this.props.history.push(userURL);
     }
 
+    profilePicOnErrorHandler = () => {
+        this.setState({profilePicError: true});
+    }
+
     render() {
 
-        const profilePictureURL = this.props.s3BaseURL_ProfilePicture + this.props.username;
+        let profilePictureURL = '';
+        if (!this.state.profilePicError) {
+            profilePictureURL = this.props.s3BaseURL_ProfilePicture + this.props.username;
+        } else {
+            profilePictureURL = this.props.s3BaseURL_ProfilePicture + 'default/default';
+        }
 
         return (
             <div className={classes.SearchResult} onClick={this.searchResultOnClickHandler}>
                 <div className={classes.ImageContainer}>
-                    <img className={classes.Image} src={profilePictureURL} alt="profile pic"/>
+                    <img className={classes.Image} src={profilePictureURL} onError={this.profilePicOnErrorHandler} alt="profile pic"/>
                 </div>
                 <div className={classes.NameContainer}>
                     {this.props.firstName} {this.props.lastName}
