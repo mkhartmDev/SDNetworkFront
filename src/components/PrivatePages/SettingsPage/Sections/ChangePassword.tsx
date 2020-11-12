@@ -1,5 +1,6 @@
 import React, { Component } from 'react'
 import classes from '../SettingsPage.module.sass'
+
 import { BiShow } from 'react-icons/bi'
 import { axiosInstance } from "../../../../util/axiosConfig";
 import { Console } from 'console';
@@ -46,6 +47,7 @@ class ChangePassword extends Component<any, any> {
                         <div>New Password</div>
                         <input onChange={this.setPass} value={this.state.passwordEntered} type={showPassword} className={classes.Input}></input>
                         <BiShow onClick={this.showIconHandler} className={showButtonClass}/>
+                        
                     </div>
                     <div onClick={this.btnHandler} className={classes.ApplyButton}>Apply</div>
                 </div>               

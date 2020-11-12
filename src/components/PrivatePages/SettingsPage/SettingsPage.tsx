@@ -6,9 +6,11 @@ import NavBar from '../PrivateComponents/NavBar/NavBar'
 import { connect } from 'react-redux'
 import ChangeProfilePicture from './Sections/ChangeProfilePicture'
 import ChangePassword from './Sections/ChangePassword'
-import ChangeEmail from './Sections/ChangeEmail'
-import ChangeFirstName from './Sections/ChangeFirstName'
-import ChangeLastName from './Sections/ChangeLastName'
+import UpdateUserForm from './Sections/UpdateUserForm'
+import { parseConfigFileTextToJson } from 'typescript'
+import { axiosInstance } from '../../../util/axiosConfig'
+import { User } from '../../../models/User'
+import UserPage from '../UserPage/UserPage'
 
 interface Props {
     
@@ -35,10 +37,13 @@ class SettingsPage extends Component<any, any> {
                     <div className={classes.Form}>
 
                         <ChangeProfilePicture {...this.props.userObject} />
+
+                        <UpdateUserForm fieldName="First Name" field="firstName" userObject={this.props.userObject}/>
+                        <UpdateUserForm fieldName="Last Name" field="lastName" userObject={this.props.userObject}/>
+                        <UpdateUserForm fieldName="email" field="email" userObject={this.props.userObject}/>
+                
+=======
                         <ChangePassword     userObject={this.props.userObject} />
-                        <ChangeEmail        userObject={this.props.userObject} />
-                        <ChangeFirstName    userObject={this.props.userObject} />
-                        <ChangeLastName     userObject={this.props.userObject} />
 
                     </div>
                     <div className={classes.BottomSpacer}></div>
@@ -56,5 +61,8 @@ const mapStateToProps = (state: any) => {
         s3BaseURL_ProfilePicture: state.s3BaseURL_ProfilePicture
     }
 }
+
+
+
 
 export default withRouter(connect(mapStateToProps, null)(SettingsPage));
