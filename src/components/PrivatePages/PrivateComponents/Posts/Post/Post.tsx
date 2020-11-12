@@ -19,7 +19,10 @@ class Post extends Component<any, any> {
 
         let imageURL = this.props.s3BaseURL_Post + this.props.postId;
 
-        let dateTime = `${this.props.date} ${this.props.time}`
+        const date = new Date(this.props.dateTimePosted).toLocaleDateString("en-US");
+        const time = new Date(this.props.dateTimePosted).toLocaleTimeString("en-US");
+
+        let dateTime = `${date} ${time}`
         let image = !this.props.imagePost ? null : (
 
             <div className={classes.DateImageContainer}>
@@ -38,7 +41,7 @@ class Post extends Component<any, any> {
                 </div>
                 <div className={classes.RightSide}>
                     {image}
-                    <PostBody postData={this.props} />
+                    <PostBody {...this.props} />
                 </div>
             </div>
         )

@@ -90,9 +90,7 @@ class CreatePostPage extends Component<any, any> {
                     <div className={classes.PosterAndTextArea}>
                         <div className={classes.ProfilePicAndNameContainer}>
                             <div className={classes.ProfilePicContainer}>
-                                <div className={classes.ProfilePicImageContainer}>
-                                    <img className={classes.ProfilePic} src={this.state.profilePictureURL} alt="pic" onError={this.profilePictureOnErrorHandler}/>
-                                </div>
+                                <img className={classes.ProfilePic} src={this.state.profilePictureURL} alt="pic" onError={this.profilePictureOnErrorHandler}/>
                             </div>
                             <div className={classes.PosterName}>{this.props.userObject.firstName} {this.props.userObject.lastName}</div>
                         </div>

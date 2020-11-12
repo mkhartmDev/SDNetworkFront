@@ -6,6 +6,7 @@ import { axiosInstance } from "../../../util/axiosConfig";
 import { User } from "../../../models/User";
 import { BiShow } from 'react-icons/bi'
 import ForgotModal from "../PublicComponents/ForgotModal";
+import { CircleSpinner } from 'react-spinners-kit'
 
 interface Props {}
 interface State {}
@@ -15,10 +16,12 @@ class LogInPage extends Component<any, any> {
     usernameEntered: "",
     passwordEntered: "",
     invalidLogInMessage: false,
-    showPassword: false
+    showPassword: false,
+    loading: false
   };
 
   logInHandler = async () => {
+    this.setState({loading: true});
     //get user from api
     const getUser = async (username: string, password: string) => {
       let response;
@@ -30,6 +33,7 @@ class LogInPage extends Component<any, any> {
       } catch (error) {
         console.log(error);
         response = null;
+        this.setState({loading: false});
       }
     };
     let user = await getUser(
@@ -42,7 +46,7 @@ class LogInPage extends Component<any, any> {
       this.props.authenticateUser(userObject);
       this.props.history.push(`/user/${userObject.username}`);
     } else {
-      this.setState({ invalidLogInMessage: true });
+      this.setState({ invalidLogInMessage: true, loading: false });
     }
   };
 
@@ -71,6 +75,8 @@ class LogInPage extends Component<any, any> {
     let showPassword = this.state.showPassword ? '' : 'password'
     let showButtonClass = this.state.showPassword ? `${classes.ShowIcon} ${classes.ShowIconActive}` : classes.ShowIcon
 
+    let LogInButtonText = this.state.loading ? <CircleSpinner size={15} color="#f5f5f5" /> : "Log In"
+
     return (
       <div className={classes.LogInPageContainer}>
         <div className={classes.Controls}>
@@ -89,7 +95,7 @@ class LogInPage extends Component<any, any> {
           </div>
           <div className={classes.LowerButtons}>
             <ForgotModal></ForgotModal>
-            <div className={classes.LogInButton} onClick={this.logInHandler}>Log In</div>
+            <div className={classes.LogInButton} onClick={this.logInHandler}>{LogInButtonText}</div>
           </div>
           {invalidMessage}
         </div>
