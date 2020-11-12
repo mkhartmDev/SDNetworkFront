@@ -24,7 +24,7 @@ class PostBody extends Component<any, any> {
             console.log("Remove Like");
             axiosInstance.post('/likes/remove', { postId: this.props.postId, userId: this.props.userObject.userId }).then(response => {
                 console.log(response);
-                this.setState({postLiked: true, likeLoading: false});
+                this.setState({postLiked: false, likeLoading: false});
             });
         } else {
             console.log("Adding Like");
