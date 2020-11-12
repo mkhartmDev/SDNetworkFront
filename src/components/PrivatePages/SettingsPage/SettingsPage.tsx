@@ -42,7 +42,6 @@ class SettingsPage extends Component<any, any> {
                         <UpdateUserForm fieldName="Last Name" field="lastName" userObject={this.props.userObject}/>
                         <UpdateUserForm fieldName="email" field="email" userObject={this.props.userObject}/>
                 
-=======
                         <ChangePassword     userObject={this.props.userObject} />
 
                     </div>
