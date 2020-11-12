@@ -23,354 +23,344 @@ class SearchPage extends Component<any, any> {
         searchResultsQuantity: 0
     }
 
-    fakeSearchResultsAPIcall = (searchInput: any) => {
-        // use Sea
-
-        if (searchInput === 'all') {
-            return [
-                {
-                    username: 'kyleaoki1',
-                    firstName: 'kyle',
-                    lastName: 'aoki'
-                },
-                {
-                    username: 'kyleaoki2',
-                    firstName: 'asdf',
-                    lastName: 'fdfdf'
-                },
-                {
-                    username: 'kyleaoki3',
-                    firstName: '9i239',
-                    lastName: 'pqeoru'
-                },
-                {
-                    username: 'kyleaoki2',
-                    firstName: 'asdf',
-                    lastName: 'fdfdf'
-                },
-                {
-                    username: 'kyleaoki3',
-                    firstName: '9i239',
-                    lastName: 'pqeoru'
-                },
-                {
-                    username: 'kyleaoki2',
-                    firstName: 'asdf',
-                    lastName: 'fdfdf'
-                },
-                {
-                    username: 'kyleaoki3',
-                    firstName: '9i239',
-                    lastName: 'pqeoru'
-                },
-                {
-                    username: 'kyleaoki2',
-                    firstName: 'asdf',
-                    lastName: 'fdfdf'
-                },
-                {
-                    username: 'kyleaoki3',
-                    firstName: '9i239',
-                    lastName: 'pqeoru'
-                },
-                {
-                    username: 'kyleaoki2',
-                    firstName: 'asdf',
-                    lastName: 'fdfdf'
-                },
-                {
-                    username: 'kyleaoki3',
-                    firstName: '9i239',
-                    lastName: 'pqeoru'
-                },
-                {
-                    username: 'kyleaoki2',
-                    firstName: 'asdf',
-                    lastName: 'fdfdf'
-                },
-                {
-                    username: 'kyleaoki3',
-                    firstName: '9i239',
-                    lastName: 'pqeoru'
-                },
-                {
-                    username: 'kyleaoki2',
-                    firstName: 'asdf',
-                    lastName: 'fdfdf'
-                },
-                {
-                    username: 'kyleaoki3',
-                    firstName: '9i239',
-                    lastName: 'pqeoru'
-                },
-                {
-                    username: 'kyleaoki2',
-                    firstName: 'asdf',
-                    lastName: 'fdfdf'
-                },
-                {
-                    username: 'kyleaoki3',
-                    firstName: '9i239',
-                    lastName: 'pqeoru'
-                },
-                {
-                    username: 'kyleaoki2',
-                    firstName: 'asdf',
-                    lastName: 'fdfdf'
-                },
-                {
-                    username: 'kyleaoki3',
-                    firstName: '9i239',
-                    lastName: 'pqeoru'
-                },
-                {
-                    username: 'kyleaoki2',
-                    firstName: 'asdf',
-                    lastName: 'fdfdf'
-                },
-                {
-                    username: 'kyleaoki3',
-                    firstName: '9i239',
-                    lastName: 'pqeoru'
-                },
-                {
-                    username: 'kyleaoki2',
-                    firstName: 'asdf',
-                    lastName: 'fdfdf'
-                },
-                {
-                    username: 'kyleaoki3',
-                    firstName: '9i239',
-                    lastName: 'pqeoru'
-                },
-                {
-                    username: 'kyleaoki2',
-                    firstName: 'asdf',
-                    lastName: 'fdfdf'
-                },
-                {
-                    username: 'kyleaoki3',
-                    firstName: '9i239',
-                    lastName: 'pqeoru'
-                },
-                {
-                    username: 'kyleaoki2',
-                    firstName: 'asdf',
-                    lastName: 'fdfdf'
-                },
-                {
-                    username: 'kyleaoki3',
-                    firstName: '9i239',
-                    lastName: 'pqeoru'
-                },
-                {
-                    username: 'kyleaoki2',
-                    firstName: 'asdf',
-                    lastName: 'fdfdf'
-                },
-                {
-                    username: 'kyleaoki3',
-                    firstName: '9i239',
-                    lastName: 'pqeoru'
-                },
-                {
-                    username: 'kyleaoki2',
-                    firstName: 'asdf',
-                    lastName: 'fdfdf'
-                },
-                {
-                    username: 'kyleaoki3',
-                    firstName: '9i239',
-                    lastName: 'pqeoru'
-                },
-                {
-                    username: 'kyleaoki1',
-                    firstName: 'kyle',
-                    lastName: 'aoki'
-                },
-                {
-                    username: 'kyleaoki2',
-                    firstName: 'asdf',
-                    lastName: 'fdfdf'
-                },
-                {
-                    username: 'kyleaoki3',
-                    firstName: '9i239',
-                    lastName: 'pqeoru'
-                },
-                {
-                    username: 'kyleaoki2',
-                    firstName: 'asdf',
-                    lastName: 'fdfdf'
-                },
-                {
-                    username: 'kyleaoki3',
-                    firstName: '9i239',
-                    lastName: 'pqeoru'
-                },
-                {
-                    username: 'kyleaoki2',
-                    firstName: 'asdf',
-                    lastName: 'fdfdf'
-                },
-                {
-                    username: 'kyleaoki3',
-                    firstName: '9i239',
-                    lastName: 'pqeoru'
-                },
-                {
-                    username: 'kyleaoki2',
-                    firstName: 'asdf',
-                    lastName: 'fdfdf'
-                },
-                {
-                    username: 'kyleaoki3',
-                    firstName: '9i239',
-                    lastName: 'pqeoru'
-                },
-                {
-                    username: 'kyleaoki2',
-                    firstName: 'asdf',
-                    lastName: 'fdfdf'
-                },
-                {
-                    username: 'kyleaoki3',
-                    firstName: '9i239',
-                    lastName: 'pqeoru'
-                },
-                {
-                    username: 'kyleaoki2',
-                    firstName: 'asdf',
-                    lastName: 'fdfdf'
-                },
-                {
-                    username: 'kyleaoki3',
-                    firstName: '9i239',
-                    lastName: 'pqeoru'
-                },
-                {
-                    username: 'kyleaoki2',
-                    firstName: 'asdf',
-                    lastName: 'fdfdf'
-                },
-                {
-                    username: 'kyleaoki3',
-                    firstName: '9i239',
-                    lastName: 'pqeoru'
-                },
-                {
-                    username: 'kyleaoki2',
-                    firstName: 'asdf',
-                    lastName: 'fdfdf'
-                },
-                {
-                    username: 'kyleaoki3',
-                    firstName: '9i239',
-                    lastName: 'pqeoru'
-                },
-                {
-                    username: 'kyleaoki2',
-                    firstName: 'asdf',
-                    lastName: 'fdfdf'
-                },
-                {
-                    username: 'kyleaoki3',
-                    firstName: '9i239',
-                    lastName: 'pqeoru'
-                },
-                {
-                    username: 'kyleaoki2',
-                    firstName: 'asdf',
-                    lastName: 'fdfdf'
-                },
-                {
-                    username: 'kyleaoki3',
-                    firstName: '9i239',
-                    lastName: 'pqeoru'
-                },
-                {
-                    username: 'kyleaoki2',
-                    firstName: 'asdf',
-                    lastName: 'fdfdf'
-                },
-                {
-                    username: 'kyleaoki3',
-                    firstName: '9i239',
-                    lastName: 'pqeoru'
-                },
-                {
-                    username: 'kyleaoki2',
-                    firstName: 'asdf',
-                    lastName: 'fdfdf'
-                },
-                {
-                    username: 'kyleaoki3',
-                    firstName: '9i239',
-                    lastName: 'pqeoru'
-                },
-                {
-                    username: 'kyleaoki2',
-                    firstName: 'asdf',
-                    lastName: 'fdfdf'
-                },
-                {
-                    username: 'kyleaoki3',
-                    firstName: '9i239',
-                    lastName: 'pqeoru'
-                },
-                {
-                    username: 'kyleaoki2',
-                    firstName: 'asdf',
-                    lastName: 'fdfdf'
-                },
-                {
-                    username: 'kyleaoki3',
-                    firstName: '9i239',
-                    lastName: 'pqeoru'
-                },
-                {
-                    username: 'kyleaoki2',
-                    firstName: 'asdf',
-                    lastName: 'fdfdf'
-                },
-                {
-                    username: 'kyleaoki3',
-                    firstName: '9i239',
-                    lastName: 'pqeoru'
-                }
-            ]
-        } else if (searchInput === 'kyle') {
-            return [{
-                username: 'kyleaoki1',
-                firstName: 'kyle',
-                lastName: 'aoki'
-            }] 
-        }
-        return [];
-    }
+    // fakeSearchResultsAPIcall = (searchInput: any) => {
+    //     if (searchInput === 'all') {
+    //         return [
+    //             {
+    //                 username: 'kyleaoki1',
+    //                 firstName: 'kyle',
+    //                 lastName: 'aoki'
+    //             },
+    //             {
+    //                 username: 'kyleaoki2',
+    //                 firstName: 'asdf',
+    //                 lastName: 'fdfdf'
+    //             },
+    //             {
+    //                 username: 'kyleaoki3',
+    //                 firstName: '9i239',
+    //                 lastName: 'pqeoru'
+    //             },
+    //             {
+    //                 username: 'kyleaoki2',
+    //                 firstName: 'asdf',
+    //                 lastName: 'fdfdf'
+    //             },
+    //             {
+    //                 username: 'kyleaoki3',
+    //                 firstName: '9i239',
+    //                 lastName: 'pqeoru'
+    //             },
+    //             {
+    //                 username: 'kyleaoki2',
+    //                 firstName: 'asdf',
+    //                 lastName: 'fdfdf'
+    //             },
+    //             {
+    //                 username: 'kyleaoki3',
+    //                 firstName: '9i239',
+    //                 lastName: 'pqeoru'
+    //             },
+    //             {
+    //                 username: 'kyleaoki2',
+    //                 firstName: 'asdf',
+    //                 lastName: 'fdfdf'
+    //             },
+    //             {
+    //                 username: 'kyleaoki3',
+    //                 firstName: '9i239',
+    //                 lastName: 'pqeoru'
+    //             },
+    //             {
+    //                 username: 'kyleaoki2',
+    //                 firstName: 'asdf',
+    //                 lastName: 'fdfdf'
+    //             },
+    //             {
+    //                 username: 'kyleaoki3',
+    //                 firstName: '9i239',
+    //                 lastName: 'pqeoru'
+    //             },
+    //             {
+    //                 username: 'kyleaoki2',
+    //                 firstName: 'asdf',
+    //                 lastName: 'fdfdf'
+    //             },
+    //             {
+    //                 username: 'kyleaoki3',
+    //                 firstName: '9i239',
+    //                 lastName: 'pqeoru'
+    //             },
+    //             {
+    //                 username: 'kyleaoki2',
+    //                 firstName: 'asdf',
+    //                 lastName: 'fdfdf'
+    //             },
+    //             {
+    //                 username: 'kyleaoki3',
+    //                 firstName: '9i239',
+    //                 lastName: 'pqeoru'
+    //             },
+    //             {
+    //                 username: 'kyleaoki2',
+    //                 firstName: 'asdf',
+    //                 lastName: 'fdfdf'
+    //             },
+    //             {
+    //                 username: 'kyleaoki3',
+    //                 firstName: '9i239',
+    //                 lastName: 'pqeoru'
+    //             },
+    //             {
+    //                 username: 'kyleaoki2',
+    //                 firstName: 'asdf',
+    //                 lastName: 'fdfdf'
+    //             },
+    //             {
+    //                 username: 'kyleaoki3',
+    //                 firstName: '9i239',
+    //                 lastName: 'pqeoru'
+    //             },
+    //             {
+    //                 username: 'kyleaoki2',
+    //                 firstName: 'asdf',
+    //                 lastName: 'fdfdf'
+    //             },
+    //             {
+    //                 username: 'kyleaoki3',
+    //                 firstName: '9i239',
+    //                 lastName: 'pqeoru'
+    //             },
+    //             {
+    //                 username: 'kyleaoki2',
+    //                 firstName: 'asdf',
+    //                 lastName: 'fdfdf'
+    //             },
+    //             {
+    //                 username: 'kyleaoki3',
+    //                 firstName: '9i239',
+    //                 lastName: 'pqeoru'
+    //             },
+    //             {
+    //                 username: 'kyleaoki2',
+    //                 firstName: 'asdf',
+    //                 lastName: 'fdfdf'
+    //             },
+    //             {
+    //                 username: 'kyleaoki3',
+    //                 firstName: '9i239',
+    //                 lastName: 'pqeoru'
+    //             },
+    //             {
+    //                 username: 'kyleaoki2',
+    //                 firstName: 'asdf',
+    //                 lastName: 'fdfdf'
+    //             },
+    //             {
+    //                 username: 'kyleaoki3',
+    //                 firstName: '9i239',
+    //                 lastName: 'pqeoru'
+    //             },
+    //             {
+    //                 username: 'kyleaoki2',
+    //                 firstName: 'asdf',
+    //                 lastName: 'fdfdf'
+    //             },
+    //             {
+    //                 username: 'kyleaoki3',
+    //                 firstName: '9i239',
+    //                 lastName: 'pqeoru'
+    //             },
+    //             {
+    //                 username: 'kyleaoki2',
+    //                 firstName: 'asdf',
+    //                 lastName: 'fdfdf'
+    //             },
+    //             {
+    //                 username: 'kyleaoki3',
+    //                 firstName: '9i239',
+    //                 lastName: 'pqeoru'
+    //             },
+    //             {
+    //                 username: 'kyleaoki1',
+    //                 firstName: 'kyle',
+    //                 lastName: 'aoki'
+    //             },
+    //             {
+    //                 username: 'kyleaoki2',
+    //                 firstName: 'asdf',
+    //                 lastName: 'fdfdf'
+    //             },
+    //             {
+    //                 username: 'kyleaoki3',
+    //                 firstName: '9i239',
+    //                 lastName: 'pqeoru'
+    //             },
+    //             {
+    //                 username: 'kyleaoki2',
+    //                 firstName: 'asdf',
+    //                 lastName: 'fdfdf'
+    //             },
+    //             {
+    //                 username: 'kyleaoki3',
+    //                 firstName: '9i239',
+    //                 lastName: 'pqeoru'
+    //             },
+    //             {
+    //                 username: 'kyleaoki2',
+    //                 firstName: 'asdf',
+    //                 lastName: 'fdfdf'
+    //             },
+    //             {
+    //                 username: 'kyleaoki3',
+    //                 firstName: '9i239',
+    //                 lastName: 'pqeoru'
+    //             },
+    //             {
+    //                 username: 'kyleaoki2',
+    //                 firstName: 'asdf',
+    //                 lastName: 'fdfdf'
+    //             },
+    //             {
+    //                 username: 'kyleaoki3',
+    //                 firstName: '9i239',
+    //                 lastName: 'pqeoru'
+    //             },
+    //             {
+    //                 username: 'kyleaoki2',
+    //                 firstName: 'asdf',
+    //                 lastName: 'fdfdf'
+    //             },
+    //             {
+    //                 username: 'kyleaoki3',
+    //                 firstName: '9i239',
+    //                 lastName: 'pqeoru'
+    //             },
+    //             {
+    //                 username: 'kyleaoki2',
+    //                 firstName: 'asdf',
+    //                 lastName: 'fdfdf'
+    //             },
+    //             {
+    //                 username: 'kyleaoki3',
+    //                 firstName: '9i239',
+    //                 lastName: 'pqeoru'
+    //             },
+    //             {
+    //                 username: 'kyleaoki2',
+    //                 firstName: 'asdf',
+    //                 lastName: 'fdfdf'
+    //             },
+    //             {
+    //                 username: 'kyleaoki3',
+    //                 firstName: '9i239',
+    //                 lastName: 'pqeoru'
+    //             },
+    //             {
+    //                 username: 'kyleaoki2',
+    //                 firstName: 'asdf',
+    //                 lastName: 'fdfdf'
+    //             },
+    //             {
+    //                 username: 'kyleaoki3',
+    //                 firstName: '9i239',
+    //                 lastName: 'pqeoru'
+    //             },
+    //             {
+    //                 username: 'kyleaoki2',
+    //                 firstName: 'asdf',
+    //                 lastName: 'fdfdf'
+    //             },
+    //             {
+    //                 username: 'kyleaoki3',
+    //                 firstName: '9i239',
+    //                 lastName: 'pqeoru'
+    //             },
+    //             {
+    //                 username: 'kyleaoki2',
+    //                 firstName: 'asdf',
+    //                 lastName: 'fdfdf'
+    //             },
+    //             {
+    //                 username: 'kyleaoki3',
+    //                 firstName: '9i239',
+    //                 lastName: 'pqeoru'
+    //             },
+    //             {
+    //                 username: 'kyleaoki2',
+    //                 firstName: 'asdf',
+    //                 lastName: 'fdfdf'
+    //             },
+    //             {
+    //                 username: 'kyleaoki3',
+    //                 firstName: '9i239',
+    //                 lastName: 'pqeoru'
+    //             },
+    //             {
+    //                 username: 'kyleaoki2',
+    //                 firstName: 'asdf',
+    //                 lastName: 'fdfdf'
+    //             },
+    //             {
+    //                 username: 'kyleaoki3',
+    //                 firstName: '9i239',
+    //                 lastName: 'pqeoru'
+    //             },
+    //             {
+    //                 username: 'kyleaoki2',
+    //                 firstName: 'asdf',
+    //                 lastName: 'fdfdf'
+    //             },
+    //             {
+    //                 username: 'kyleaoki3',
+    //                 firstName: '9i239',
+    //                 lastName: 'pqeoru'
+    //             },
+    //             {
+    //                 username: 'kyleaoki2',
+    //                 firstName: 'asdf',
+    //                 lastName: 'fdfdf'
+    //             },
+    //             {
+    //                 username: 'kyleaoki3',
+    //                 firstName: '9i239',
+    //                 lastName: 'pqeoru'
+    //             },
+    //             {
+    //                 username: 'kyleaoki2',
+    //                 firstName: 'asdf',
+    //                 lastName: 'fdfdf'
+    //             },
+    //             {
+    //                 username: 'kyleaoki3',
+    //                 firstName: '9i239',
+    //                 lastName: 'pqeoru'
+    //             }
+    //         ]
+    //     } else if (searchInput === 'kyle') {
+    //         return [{
+    //             username: 'kyleaoki1',
+    //             firstName: 'kyle',
+    //             lastName: 'aoki'
+    //         }] 
+    //     }
+    //     return [];
+    // }
 
     getSearchResults = () => {
-        const searchResults = this.fakeSearchResultsAPIcall(this.props.match.params.searchInput);
-        const searchResultsQuantity = searchResults.length;
-        this.setState({
-            searchResults: searchResults,
-            searchResultsQuantity: searchResultsQuantity
-        });
-    }
-
-    componentDidMount () {
-        let test = this.props.match.params.searchInput
-        let response = axiosInstance.post("/user/search", this.props.match.params.searchInput ).then(
+        axiosInstance.post("/user/search", this.props.match.params.searchInput ).then(
             response => {
                 console.log(response);
                 const searchResultsQuantity = response.data.length;
                 this.setState({
                     searchResults: response.data,
                     searchResultsQuantity: searchResultsQuantity
+                });
         });
-            }
-        );
-        
+    }
+
+    componentDidMount () {
+        this.getSearchResults();
     }
 
     componentDidUpdate = (prevProps: any) => {
