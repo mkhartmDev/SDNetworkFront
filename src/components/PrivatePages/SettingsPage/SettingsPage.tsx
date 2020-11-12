@@ -38,15 +38,12 @@ class SettingsPage extends Component<any, any> {
 
                         <ChangeProfilePicture {...this.props.userObject} />
 
-                        <UpdateUserForm fieldName="First Name" field="firstName" current={this.props.userObject.firstName} handler={handleSubmit}/>
-                        <UpdateUserForm fieldName="Last Name" current={this.props.userObject.Last}/>
-                        <UpdateUserForm fieldName="email" current={this.props.userObject.email}/>
+                        <UpdateUserForm fieldName="First Name" field="firstName" userObject={this.props.userObject}/>
+                        <UpdateUserForm fieldName="Last Name" field="lastName" userObject={this.props.userObject}/>
+                        <UpdateUserForm fieldName="email" field="email" userObject={this.props.userObject}/>
                 
 =======
                         <ChangePassword     userObject={this.props.userObject} />
-                        {/* <ChangeEmail        userObject={this.props.userObject} />
-                        <ChangeFirstName    userObject={this.props.userObject} />
-                        <ChangeLastName     userObject={this.props.userObject} /> */}
 
                     </div>
                     <div className={classes.BottomSpacer}></div>
@@ -65,15 +62,7 @@ const mapStateToProps = (state: any) => {
     }
 }
 
-const handleSubmit = (field:string,userObject:User)=>{
-    const axios = axiosInstance;
-    const newField = document.getElementById('input '+field)?.innerText;
-    Object.defineProperty(userObject,field,{value:newField});
-    console.log(userObject);
 
-
-    
-}
 
 
 export default withRouter(connect(mapStateToProps, null)(SettingsPage));
