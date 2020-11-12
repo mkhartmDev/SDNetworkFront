@@ -15,7 +15,9 @@ interface State {
 class ChangeProfilePicture extends Component<any, any> {
     state = {
         imageToUpload: null,
-        loading: false
+        loading: false,
+        useStateForProfilePic: false,
+        profilePictureURL: ''
     }
 
     onApplyButtonPressHandler = () => {
@@ -49,15 +51,23 @@ class ChangeProfilePicture extends Component<any, any> {
         this.setState({imageToUpload: event.target.files[0]});
     }
 
-    render() {
+    onProfilePictureErrorHandler = () => {
+        this.setState({profilePictureURL: this.props.s3BaseURL_ProfilePicture + 'default/default', useStateForProfilePic: true})
+    }
 
-        const profilePictureURL = this.props.s3BaseURL_ProfilePicture + this.props.username;
+    render() {
+        let profilePictureURL = ''
+        if (!this.state.useStateForProfilePic){
+            profilePictureURL = this.props.s3BaseURL_ProfilePicture + this.props.username;
+        } else {
+            profilePictureURL = this.state.profilePictureURL;
+        }
         let buttonContent = this.state.loading ? <CircleSpinner size={15} color="#f5f5f5" /> : <>Apply</>
 
         return (
             <div>
                 <div className={classes.SectionPic}>
-                    <img className={classes.ProfilePicture} src={profilePictureURL} alt="pic" height="150px" />
+                    <img className={classes.ProfilePicture} onError={this.onProfilePictureErrorHandler} src={profilePictureURL} alt="pic" height="150px" />
                     <div className={classes.InputField}>
                         <div>Change Profile Picture</div>
                         <input type="file" id="img" name="img" accept="image/*" onChange={this.onInputChangeHandler}></input>

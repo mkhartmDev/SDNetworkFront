@@ -4,6 +4,7 @@ import classes from './SearchPage.module.sass'
 import SearchResult from './SearchResult/SearchResult'
 import { connect } from 'react-redux'
 import { withRouter } from 'react-router-dom'
+import { axiosInstance } from "../../../util/axiosConfig";
 
 interface Props {
     
@@ -23,7 +24,8 @@ class SearchPage extends Component<any, any> {
     }
 
     fakeSearchResultsAPIcall = (searchInput: any) => {
-        // use Search Input String obtained from URL to search database for users
+        // use Sea
+
         if (searchInput === 'all') {
             return [
                 {
@@ -357,7 +359,18 @@ class SearchPage extends Component<any, any> {
     }
 
     componentDidMount () {
-        this.getSearchResults();
+        let test = this.props.match.params.searchInput
+        let response = axiosInstance.post("/user/search", this.props.match.params.searchInput ).then(
+            response => {
+                console.log(response);
+                const searchResultsQuantity = response.data.length;
+                this.setState({
+                    searchResults: response.data,
+                    searchResultsQuantity: searchResultsQuantity
+        });
+            }
+        );
+        
     }
 
     componentDidUpdate = (prevProps: any) => {
