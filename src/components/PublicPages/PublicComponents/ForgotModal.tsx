@@ -14,7 +14,7 @@ export const ForgotModal = () => {
     response = await axiosInstance.post("/user/forgot", email);
   }
 
-    const [email, setEmail] = useState('');
+  const [email, setEmail] = useState('');
 
 
   return (
