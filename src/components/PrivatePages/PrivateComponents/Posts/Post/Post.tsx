@@ -41,7 +41,7 @@ class Post extends Component<any, any> {
                 </div>
                 <div className={classes.RightSide}>
                     {image}
-                    <PostBody postData={this.props} />
+                    <PostBody {...this.props} />
                 </div>
             </div>
         )
