@@ -13,16 +13,20 @@ interface State {
 
 class ProfileInfo extends Component<any, any> {
 
-    state = {}
+    state = {
+        profilePictureURL: this.props.s3BaseURL_ProfilePicture + this.props.username
+    }
+
+    onProfilePictureErrorHandler = () => {
+        this.setState({profilePictureURL: this.props.s3BaseURL_ProfilePicture + 'default/default'})
+    }
 
     render() {
-
-        const ProfilePicURL = this.props.s3BaseURL_ProfilePicture + this.props.username;
 
         return (
             <div className={classes.ProfileInfoContainer}>
                 <div className={classes.ProfilePicContainer}>
-                    <img className={classes.ProfilePic} src={ProfilePicURL} alt="profilePic"/>
+                    <img className={classes.ProfilePic} src={this.state.profilePictureURL} alt="profilePic" onError={this.onProfilePictureErrorHandler}/>
                 </div>
                 <div className={classes.NameContainer}>{this.props.firstName} {this.props.lastName}</div>
             </div>
