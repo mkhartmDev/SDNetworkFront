@@ -20,15 +20,13 @@ export default class PostBody extends Component<any, any> {
 
     render() {
 
-
-
         return (
             <div className={classes.PostBodyContainer}>
                 <div className={classes.PostBody}>
                     {this.props.postData.postText}
                 </div>
                 <div className={classes.PostButtonsContainer}>
-                    <div className={classes.Likes}><FiThumbsUp />{this.props.postData.numLikes}</div>
+                    <div className={classes.Likes}><FiThumbsUp />{this.props.postData.numberLikes}</div>
                     <div className={classes.Spacer}></div>
                     <div className={classes.LikeButton} onClick={this.onLikeButtonPressedHandler}>Like</div>
                 </div>

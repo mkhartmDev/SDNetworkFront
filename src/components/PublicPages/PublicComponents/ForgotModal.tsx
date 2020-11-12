@@ -19,8 +19,8 @@ export const ForgotModal = () => {
 
   return (
     <div>
-        <a onClick={toggle}>Forgot Password</a>
-      <Modal isOpen={modal} toggle={toggle} >
+        <div className={classes.ForgotPasswordButton} onClick={toggle}>Forgot Password</div>
+        <Modal isOpen={modal} toggle={toggle} >
         <ModalHeader toggle={toggle}><div className={classes.Label}>Forgot Password</div></ModalHeader>
         <ModalBody>
         <div className={classes.ForgotFieldsContainer}>
