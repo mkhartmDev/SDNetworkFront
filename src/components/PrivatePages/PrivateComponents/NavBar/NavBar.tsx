@@ -4,6 +4,7 @@ import SearchBar from './SearchBar/SearchBar'
 import { NavLink, withRouter } from 'react-router-dom'
 import { connect } from 'react-redux'
 import Logo from '../../../../assets/mask.png'
+import { HiHand } from 'react-icons/hi'
 
 interface Props {
     
@@ -26,10 +27,11 @@ class NavBar extends Component<any, any> {
     render() {
 
         const URLToOwnProfile = `/user/${this.props.userObject.username}`;
+        const logoStyle = {cursor:"pointer"} as React.CSSProperties
 
         return (
             <div className={classes.NavBar}>
-                <div className={classes.Logo}>
+                <div className={classes.Logo} style={logoStyle} onClick={()=>this.props.history.push('/feed')}>
                     <div className={classes.LogoTextBig}>Social Distancing Network</div>
                     <div className={classes.LogoTextSmall}>SD Network</div>
                     <img className={classes.LogoImg} src={Logo} alt="pic" />
