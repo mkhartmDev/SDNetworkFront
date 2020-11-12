@@ -20,8 +20,6 @@ export default class PostBody extends Component<any, any> {
 
     render() {
 
-        console.log(this.props);
-
         return (
             <div className={classes.PostBodyContainer}>
                 <div className={classes.PostBody}>
