@@ -20,11 +20,17 @@ class ChangeProfilePicture extends Component<any, any> {
         profilePictureURL: ''
     }
 
+    updateProfilePicture = () => {
+        this.props.history.push('user/' + this.props.userObject.username)
+    }
+
+
     onApplyButtonPressHandler = () => {
 
         this.setState({loading: true});
 
         let username: any = this.props.userObject.username;
+        let func = this.updateProfilePicture;
 
         function getBase64 (file: any, callback: any) {
             const reader = new FileReader();
@@ -32,15 +38,10 @@ class ChangeProfilePicture extends Component<any, any> {
             reader.readAsDataURL(file);
         }
 
-        function reloadPage() {
-            window.location.reload();
-        }
-
-
         getBase64(this.state.imageToUpload, function(b64Data: any){
             axiosInstance.post('/upload-image/change-profile-picture', {username: username, b64: b64Data}).then(response => {
                 if (response.status == 200) {
-                    setTimeout(reloadPage, 500);
+                    setTimeout(()=>func(), 500);
                 }
             });
         });

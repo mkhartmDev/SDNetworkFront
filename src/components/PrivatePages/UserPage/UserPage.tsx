@@ -56,7 +56,7 @@ class UserPage extends Component<any, any> {
                 <div className={classes.MAXWIDTH}>
                     <div className={classes.UserPageContainer}>
                         <div className={classes.LeftSide}>
-                            <ProfileInfo {...this.state.userObject} />
+                            <ProfileInfo {...this.state.userObject} {...this.props.match.params.username} />
                             <FriendsBox />
                         </div>
                         <div className={classes.RightSide}>
