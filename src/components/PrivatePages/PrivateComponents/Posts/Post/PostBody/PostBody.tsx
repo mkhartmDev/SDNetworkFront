@@ -20,15 +20,8 @@ class PostBody extends Component<any, any> {
 
     onLikeButtonPressedHandler = () => {
         this.setState({likeLoading: true});
-        if (this.state.postLiked) {
-            console.log("Remove Like");
+        if (!this.state.postLiked){
             axiosInstance.post('/likes/remove', { postId: this.props.postId, userId: this.props.userObject.userId }).then(response => {
-                console.log(response);
-                this.setState({postLiked: false, likeLoading: false});
-            });
-        } else {
-            console.log("Adding Like");
-            axiosInstance.post('/likes/add', { postId: this.props.postId, userId: this.props.userObject.userId }).then(response => {
                 console.log(response);
                 this.setState({postLiked: true, likeLoading: false});
             });
@@ -39,7 +32,7 @@ class PostBody extends Component<any, any> {
 
         let postLikedStyle = this.state.postLiked ? {backgroundColor: '#65C1A5', color: '#f5f5f5'} : {}
         let likeButtonText = this.state.likeLoading ? <CircleSpinner size={10} color="#f5f5f5" /> : "Like"
-        let numberOfLikesDisplayed = this.state.postLiked ? this.props.numberLikes + 1 : this.props.numberLikes;
+        let numberOfLikesDisplayed = this.state.postLiked ? (this.props.numberLikes - 1) * -1 : this.props.numberLikes * -1;
 
         return (
             <div className={classes.PostBodyContainer}>

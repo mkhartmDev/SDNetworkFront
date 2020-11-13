@@ -19,7 +19,7 @@ class Posts extends Component<any, any> {
     feedAPICall = () => {
         axiosInstance.get('/posts/all').then(response => {
             let postArr = [];
-            for (let postData of response.data.reverse()){
+            for (let postData of response.data.sort(this.custom_sort).reverse()){
                 postArr.push(
                     <Post {...postData} />
                 );
@@ -34,10 +34,15 @@ class Posts extends Component<any, any> {
         }
     }
 
+    custom_sort(a: any, b: any) {
+        return new Date(a.dateTimePosted).getTime() - new Date(b.dateTimePosted).getTime();
+    }
+
     render() {
         let postArr: any = [];
         if (this.props.ProfileOrFeed === 'PROFILE'){
-            for (let postData of this.props.responseData.reverse()){
+            console.log(this.props.responseData)
+            for (let postData of this.props.responseData.sort(this.custom_sort).reverse()){
                 postArr.push(
                     <Post {...postData} />
                 );
