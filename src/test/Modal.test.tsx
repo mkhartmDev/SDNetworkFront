@@ -9,7 +9,7 @@ import ForgotModal from "../components/PublicPages/PublicComponents/ForgotModal"
 Enzyme.configure({adapter:new Adapter()})
 
 test('render the forgot pass modal', () => {
-  const component =render(<MemoryRouter initialEntries={[ '/' ]}>
+  const component = render(<MemoryRouter initialEntries={[ '/' ]}>
     <ForgotModal/>
     </MemoryRouter>)
     expect(component).toMatchSnapshot();

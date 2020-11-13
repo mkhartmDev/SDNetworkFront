@@ -14,7 +14,7 @@ Enzyme.configure({adapter:new Adapter()})
 
 test('render the landing page', () => {
   //Component surrounded by router so it didn't complain about the navlinks inside
-  const component =render(<MemoryRouter initialEntries={[ '/' ]}>
+  const component = render(<MemoryRouter initialEntries={[ '/' ]}>
     <Landing/>
     </MemoryRouter>)
     expect(component).toMatchSnapshot();
