@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import classes from './Posts.module.sass'
 import Post from './Post/Post'
-import { connect } from 'react-redux'
+import { axiosInstance } from '../../../../util/axiosConfig'
 
 interface Props {
     
@@ -16,117 +16,46 @@ class Posts extends Component<any, any> {
         PostArray: []
     }
 
-    fakeFeedAPICall = () => {
-        return [
-            {
-                "username":"kyleaoki1",
-                "firstName":"Kyle1",
-                "lastName":"Aoki1",
-                "postText":"Lorem ipsum dolor sit amet, consectetur adipisicing elit.",
-                "imagePost":true,
-                "imgURL":"https://photographylife.com/wp-content/uploads/2016/06/Mass.jpg",
-                "date":"2020-11-1",
-                "time":"8:29 PM"
-             },
-             {
-                "username":"kyleaoki2",
-                "firstName":"Kyle2",
-                "lastName":"Aoki2",
-                "postText":"Lorem ipsum dolor sit amet, consectetur adipisicing elit.",
-                "imagePost":true,
-                "imgURL":"https://photographylife.com/wp-content/uploads/2016/06/Mass.jpg",
-                "date":"2020-11-1",
-                "time":"8:29 PM"
-             },
-             {
-                "username":"kyleaoki3",
-                "firstName":"Kyle3",
-                "lastName":"Aoki3",
-                "postText":"Lorem ipsum dolor sit amet, consectetur adipisicing elit.",
-                "imagePost":true,
-                "imgURL":"https://photographylife.com/wp-content/uploads/2016/06/Mass.jpg",
-                "date":"2020-11-1",
-                "time":"8:29 PM"
-             }
-        ];
-    }
-
-    fakeProfileAPICall = () => {
-        return [
-            {
-                "username":"kyleaoki1",
-                "firstName":"xyz",
-                "lastName":"zzz",
-                "postText":"Lorem ipsum dolor sit amet consectetur adipisicing elit.",
-                "imagePost":true,
-                "imgURL":"https://upload.wikimedia.org/wikipedia/commons/e/e1/Gaoliang_Bridge.JPG",
-                "date":"2020-11-1",
-                "time":"8:29 PM"
-             },
-             {
-                "username":"kyleaoki2",
-                "firstName":"Kyle2",
-                "lastName":"Aoki2",
-                "postText":"Lorem ipsum dolor sit amet consectetur adipisicing elit. Aliquam quibusdam magnam consequuntur quis labore dolorum asperiores recusandae esse, praesentium error saepe porro tempora corrupti.",
-                "imagePost":true,
-                "imgURL":"https://upload.wikimedia.org/wikipedia/commons/e/e1/Gaoliang_Bridge.JPG",
-                "date":"2020-11-1",
-                "time":"8:29 PM"
-             },
-             {
-                "username": "kyleaoki3",
-                "firstName":"asdfasdfasdf",
-                "lastName":"asdfasdf",
-                "postText": "Lorem ipsum dolor sit amet consectetur adipisicing elit. Aliquam quibusdam magnam consequuntur quis labore dolorum asperiores recusandae esse, accusantium suscipit tenetur vero, delectus sequi, praesentium error saepe porro tempora corrupti.",
-                "imagePost":true,
-                "imgURL":"https://upload.wikimedia.org/wikipedia/commons/e/e1/Gaoliang_Bridge.JPG",
-                "date":"2020-11-1",
-                "time":"8:29 PM"
-             }
-        ];
-    }
-
-    genereateFeedArray = () => {
-        let testPostData = this.fakeFeedAPICall();
-        return testPostData;
-    }
-
-    generateProfilePostsArray = (username: any) => {
-        // Get posts of specific user "http:// ... /username"
-        let testPostData = this.fakeProfileAPICall();
-        return testPostData;
-    }
-
-    generatePosts = () => {
-        // Gets post data, depending on whether  this.props.ProfileOrFeed  is equal to 'PROFILE' or 'FEED'
-        let postDataArr: any = [];
-        if (this.props.ProfileOrFeed === 'PROFILE') {
-            postDataArr = this.generateProfilePostsArray(this.props.username);
-        } else {
-            postDataArr = this.genereateFeedArray();
-        }
-
-        let postArr = [];
-        for (let postData of postDataArr){
-            postArr.push(
-                <Post postData={postData} />
-            );
-        }
-        return postArr;
+    feedAPICall = () => {
+        axiosInstance.get('/posts/all').then(response => {
+            let postArr = [];
+            for (let postData of response.data.sort(this.custom_sort).reverse()){
+                postArr.push(
+                    <Post {...postData} />
+                );
+            }
+            this.setState({PostArray: postArr});
+        });
     }
 
     componentDidMount() {
-        let PostArray = this.generatePosts();
-        this.setState({PostArray: PostArray})
+        if (this.props.ProfileOrFeed !== 'PROFILE') {
+            this.feedAPICall();
+        }
+    }
+
+    custom_sort(a: any, b: any) {
+        return new Date(a.dateTimePosted).getTime() - new Date(b.dateTimePosted).getTime();
     }
 
     render() {
-
-        console.log(this.state.PostArray);
+        let postArr: any = [];
+        if (this.props.ProfileOrFeed === 'PROFILE'){
+            console.log(this.props.responseData)
+            for (let postData of this.props.responseData.sort(this.custom_sort).reverse()){
+                postArr.push(
+                    <Post {...postData} />
+                );
+            }
+            if (postArr.length == 0) {
+                postArr = <h1>You Don't Have Any Posts</h1>
+            }
+        }
+        let posts = this.props.ProfileOrFeed === 'PROFILE' ? postArr : this.state.PostArray;
 
         return (
             <div className={classes.PostList}>
-                {this.state.PostArray}
+                {posts}
             </div>
         )
     }

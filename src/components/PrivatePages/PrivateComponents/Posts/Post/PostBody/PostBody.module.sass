@@ -1,13 +1,19 @@
+@import '../../../../../../index'
+    
 .PostBodyContainer
     display: flex
     flex-direction: column
     justify-content: center
     align-items: center
+    width: 100%
 
 .PostBody
     padding: 15px
     text-align: left
     font-size: 20px
+    max-width: 500px
+    min-width: 500px
+    overflow-wrap: break-word
 
 .PostButtonsContainer
     display: grid
@@ -20,22 +26,24 @@
 
 .Likes
     display: flex
-    flex-direction: column
+    flex-direction: row
     justify-content: center
     align-items: center
-    border: 2px solid black
+    gap: 10px
+    border-bottom: 2px solid lightgrey
+    text-align: left
     border-radius: 4px
-    width: 150px
+    width: auto
     margin-left: 20px
     font-size: 20px
-    user-select: none
 
 .LikeButton
     display: flex
     flex-direction: column
     justify-content: center
     align-items: center
-    border: 2px solid black
+    border: 2px solid $base-color
+    color: $base-color
     width: 75px
     height: 30px
     border-radius: 4px
@@ -46,18 +54,20 @@
     user-select: none
 
 .LikeButton:hover
-    background-color: aliceblue
+    background-color: $hover-color
+    color: white
     cursor: pointer
 
 .LikeButton:active
-    background-color: #c7e5ff
+    background-color: $active-color
 
 .ViewButton
     display: flex
     flex-direction: column
     justify-content: center
     align-items: center
-    border: 2px solid black
+    border: 2px solid $base-color
+    color: $base-color
     width: 75px
     height: 30px
     border-radius: 4px
@@ -68,10 +78,11 @@
     user-select: none
 
 .ViewButton:hover
-    background-color: aliceblue
+    background-color: $hover-color
+    color: white
     cursor: pointer
 
 .ViewButton:active
-    background-color: #c7e5ff
+    background-color: $active-color
 
 
