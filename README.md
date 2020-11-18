@@ -5,7 +5,7 @@ Youtube Video Demonstrating the Social Distancing Network: https://www.youtube.c
 ### Creating A New Account
 ![](SDNetwork_Photos/creating_an_account.jpg)
 
-### Changing Profile Photo On Settings Page
+### Changing Profile Image On Settings Page
 ![](SDNetwork_Photos/settings_page.jpg)
 
 ### Creating A New Post
